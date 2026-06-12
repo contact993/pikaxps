@@ -96,3 +96,44 @@ def test_empty_model_info():
     region = make_pt4f_region()
     report = audit.audit(region)
     assert report.findings[0].severity == "info"
+
+
+def test_necessity_ghost_peak_flagged():
+    """A peak whose presence doesn't change the fit ('same before/after') is
+    flagged as not required; real peaks read as essential."""
+    rng = np.random.default_rng(9)
+    x = np.arange(276.0, 296.0, 0.05)
+    y = np.full_like(x, 600.0)
+    y += lineshapes.evaluate("GL_SUM", x, 284.8, 20000.0, 1.3, 30.0, 0.0)
+    y += lineshapes.evaluate("GL_SUM", x, 288.6, 6000.0, 1.4, 30.0, 0.0)
+    y += rng.normal(0, 12, x.size)
+    region = Region(name="C 1s", x=x, y=y,
+                    background=BackgroundSpec(kind="LINEAR", lo=276.3, hi=295.7))
+    region.peaks = [
+        Peak.create(center=284.8, area=20000.0, fwhm=1.3, label="C-C"),
+        Peak.create(center=288.6, area=6000.0, fwhm=1.4, label="O-C=O"),
+        Peak.create(center=281.5, area=300.0, fwhm=1.5, label="ghost"),  # nothing there
+    ]
+    fitting.fit_region(region)
+    report = audit.audit(region)
+    nec = {f.message.split(":")[0]: f.severity for f in report.findings if f.topic == "필요성"}
+    assert nec["C-C"] == "ok"
+    assert nec["O-C=O"] == "ok"
+    assert nec["ghost"] in ("bad", "warn")
+    ghost_msg = next(f.message for f in report.findings
+                     if f.topic == "필요성" and f.message.startswith("ghost"))
+    assert "ΔBIC" in ghost_msg
+
+
+def test_necessity_doublet_removed_as_unit():
+    region = make_pt4f_region()
+    region.peaks = refdb.doublet_pair("Pt", "4f", 71.1, main_index=0, label="Pt(0)",
+                                      area=20000.0, fwhm=1.0)
+    region.peaks.append(Peak.create(center=77.0, area=200.0, fwhm=1.2, label="extra"))
+    fitting.fit_region(region)
+    report = audit.audit(region)
+    nec = [f for f in report.findings if f.topic == "필요성"]
+    # partner not tested separately: only main(pair) + extra
+    assert len(nec) == 2
+    main_f = next(f for f in nec if f.message.startswith("Pt(0)"))
+    assert main_f.severity == "ok" and "doublet 쌍" in main_f.message

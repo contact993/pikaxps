@@ -230,9 +230,78 @@ def audit(region: Region) -> AuditReport:
                 else:
                     out.append(Finding("ok", "대전 보정", f"C-C {main.center.value:.2f} eV — 284.8 기준 OK."))
 
+    # ---------- per-peak necessity: would the fit survive without it? ----------
+    out.extend(_necessity_findings(region))
+
     # ---------- residual statistics (one item) ----------
     d = diagnose.diagnose(region)
     sev = "ok" if "충분" in d.verdict else ("bad" if "가능성이 높" in d.verdict else "warn")
     out.append(Finding(sev, "잔차 통계", f"{d.verdict} — {d.detail.splitlines()[0]}"))
 
     return AuditReport(out, d)
+
+
+def _necessity_findings(region: Region) -> list[Finding]:
+    """Leave-one-out model comparison: refit WITHOUT each peak (doublet pairs
+    removed as a unit) and compare BIC. If the model is just as good without a
+    peak — the 'adding it changed nothing' case — the data does not demand it.
+    dBIC > +10 without it = strongly required (standard nested-model criterion).
+    """
+    import copy
+
+    from .. import refdb as _refdb
+
+    peaks = region.peaks
+    testable = [i for i, p in enumerate(peaks) if p.kind != "doublet_partner"]
+    if len(peaks) < 2 or len(testable) < 2:
+        return []  # removing the only component isn't a meaningful comparison
+    if len(peaks) > 12:
+        return [Finding("info", "필요성",
+                        "피크가 12개를 넘어 피크별 필요성 검정(leave-one-out)을 건너뜁니다.")]
+
+    base = copy.deepcopy(region)
+    res0 = fitting.fit_region(base)
+    i1, i2 = base.crop_indices()
+    r0 = res0.residual[i1: i2 + 1]
+    n = r0.size
+    bic0 = diagnose._bic(float(np.sum(r0 * r0)), n, diagnose._nvarys(base.peaks))
+
+    def partner_of(pks: list[Peak], idx: int) -> int | None:
+        pat = f"p{idx}_center"
+        for j, q in enumerate(pks):
+            if j != idx and q.kind == "doublet_partner" and pat in (q.center.expr or ""):
+                return j
+        return None
+
+    out: list[Finding] = []
+    for i in testable:
+        p = base.peaks[i]
+        name = p.label or f"Peak {i + 1}"
+        trial = copy.deepcopy(base)
+        drop = [i]
+        j = partner_of(trial.peaks, i)
+        if j is not None:
+            drop.append(j)
+        for k in sorted(drop, reverse=True):
+            del trial.peaks[k]
+            _refdb.reindex_exprs_after_delete(trial.peaks, k)
+        if not trial.peaks:
+            continue
+        res1 = fitting.fit_region(trial)
+        r1 = res1.residual[i1: i2 + 1]
+        bic1 = diagnose._bic(float(np.sum(r1 * r1)), n, diagnose._nvarys(trial.peaks))
+        dbic = bic1 - bic0  # positive = worse without this peak = it is needed
+        unit = "doublet 쌍" if j is not None else "피크"
+        if dbic > 10.0:
+            out.append(Finding("ok", "필요성",
+                f"{name}: 필수 성분 — 이 {unit}을 빼면 fitting이 명확히 나빠집니다 (ΔBIC +{dbic:.0f})."))
+        elif dbic > 0.0:
+            out.append(Finding("warn", "필요성",
+                f"{name}: 기여가 약합니다 (빼면 ΔBIC +{dbic:.0f} — +10 미만은 약한 근거). "
+                f"화학적 근거를 확인하세요."))
+        else:
+            out.append(Finding("bad", "필요성",
+                f"{name}: 빼도 fitting이 같거나 더 좋습니다 (ΔBIC {dbic:+.0f}) — "
+                f"데이터가 이 {unit}을 요구하지 않습니다. '추가 전후가 똑같다'면 바로 이 경우 — "
+                f"화학적 근거(레퍼런스의 알려진 상태)가 없으면 제거하세요."))
+    return out
