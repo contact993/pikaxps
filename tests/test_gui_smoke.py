@@ -230,7 +230,7 @@ def test_feedback_round_features(qapp):
 
     # table row color matches plot component color (Label column, after Type)
     from xpsfit.ui.plot_widget import COMPONENT_COLORS
-    item = w.peak_table.table.item(0, 1)
+    item = w.peak_table.table.item(0, 2)
     assert item.background().color().name() == COMPONENT_COLORS[0]
 
     # free button drops constraints and reports what it released
@@ -377,3 +377,55 @@ def test_type_column_conversions(qapp):
     from xpsfit.core.spectrum import Region as R2
     r2 = R2.from_dict(d)
     assert r2.peaks[1].kind == "satellite"
+
+
+def test_peak_pinning(qapp):
+    """📌 freeze-one-optimize-rest, position-only lock, all-pinned guard."""
+    from PySide6.QtCore import Qt
+    from xpsfit.core import fitting
+    from xpsfit.core.spectrum import Peak
+    from xpsfit.ui.main_window import MainWindow
+
+    w = MainWindow()
+    region = make_s2p_region()
+    region.peaks = [Peak.create(center=161.5, area=4000.0, fwhm=1.2, label="A"),
+                    Peak.create(center=168.5, area=1500.0, fwhm=1.2, label="B")]
+    w.session.regions.append(region)
+    w._refresh_region_list()
+
+    # pin A through the checkbox column
+    item = w.peak_table.table.item(0, w.peak_table.COL_PIN)
+    item.setCheckState(Qt.CheckState.Checked)
+    assert region.peaks[0].pinned is True
+
+    before = (region.peaks[0].center.value, region.peaks[0].area.value,
+              region.peaks[0].fwhm.value)
+    fitting.fit_region(region)
+    after = (region.peaks[0].center.value, region.peaks[0].area.value,
+             region.peaks[0].fwhm.value)
+    assert before == after  # pinned peak untouched
+    assert region.peaks[1].center.value != pytest.approx(168.5, abs=1e-6)  # B moved
+
+    # pinned peak ignores drags
+    w._peak_dragged(0, 160.0, 9999.0)
+    assert region.peaks[0].center.value == before[0]
+
+    # position-only lock: center frozen, area still optimizes
+    region.peaks[0].pinned = False
+    region.peaks[0].center.vary = False
+    region.peaks[0].center.value = 161.5
+    region.peaks[0].area.value = 1000.0
+    fitting.fit_region(region)
+    assert region.peaks[0].center.value == 161.5
+    assert region.peaks[0].area.value != 1000.0
+
+    # everything frozen -> guarded message, no crash
+    region.peaks[0].pinned = True
+    region.peaks[1].pinned = True
+    res = fitting.fit_region(region)
+    assert "고정" in res.message
+
+    # session round-trip keeps the pin
+    from xpsfit.core.spectrum import Region as R2
+    r2 = R2.from_dict(region.to_dict())
+    assert r2.peaks[0].pinned is True

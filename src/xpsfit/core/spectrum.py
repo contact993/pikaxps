@@ -69,6 +69,8 @@ class Peak:
     shape: str = "GL_SUM"
     # peak role: "single" | "doublet_main" | "doublet_partner" | "satellite"
     kind: str = "single"
+    # pinned: the whole peak is frozen during fits (others keep optimizing)
+    pinned: bool = False
     center: ParamSpec = field(default_factory=ParamSpec)
     area: ParamSpec = field(default_factory=ParamSpec)
     fwhm: ParamSpec = field(default_factory=ParamSpec)
@@ -110,12 +112,14 @@ class Peak:
         }
         if self.kind != "single":
             d["kind"] = self.kind
+        if self.pinned:
+            d["pinned"] = True
         return d
 
     @classmethod
     def from_dict(cls, d: dict) -> "Peak":
         p = cls(label=d.get("label", ""), shape=d.get("shape", "GL_SUM"),
-                kind=d.get("kind", "single"))
+                kind=d.get("kind", "single"), pinned=d.get("pinned", False))
         for n in cls.PARAM_NAMES:
             if n in d:
                 setattr(p, n, ParamSpec.from_dict(d[n]))

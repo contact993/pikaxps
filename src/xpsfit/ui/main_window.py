@@ -439,7 +439,10 @@ class MainWindow(QMainWindow):
         if region is None or index >= len(region.peaks):
             return
         p = region.peaks[index]
-        if p.center.expr is None:
+        if p.pinned:
+            self.statusBar().showMessage("📌 고정된 피크입니다 — 테이블에서 핀을 해제하면 움직일 수 있어요", 4000)
+            return
+        if p.center.expr is None and p.center.vary:
             i1, i2 = region.crop_indices()
             lo = max(p.center.min, float(region.x[i1]))
             hi = min(p.center.max, float(region.x[i2]))

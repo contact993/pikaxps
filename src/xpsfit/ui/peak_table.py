@@ -138,8 +138,10 @@ class PeakTable(QWidget):
     modelChanged = Signal()  # any parameter/peak-list change
     peakSelected = Signal(int)
 
-    HEADERS = ["Type", "Label", "Shape", "Center", "FWHM", "Area", "Area %", "%L-G", "Asym", "Link", ""]
+    HEADERS = ["Type", "📌", "Label", "Shape", "Center", "FWHM", "Area", "Area %", "%L-G", "Asym", "Link", ""]
     KIND_LABEL = {"single": "단일", "doublet_main": "Doublet", "satellite": "Satellite"}
+    COL_TYPE, COL_PIN, COL_LABEL, COL_SHAPE, COL_CENTER, COL_FWHM, COL_AREA = 0, 1, 2, 3, 4, 5, 6
+    COL_FRAC, COL_MIX, COL_ASYM, COL_LINK = 7, 8, 9, 10
 
     def __init__(self, parent=None):
         super().__init__(parent)
@@ -149,8 +151,13 @@ class PeakTable(QWidget):
         self.table = QTableWidget(0, len(self.HEADERS))
         self.table.setHorizontalHeaderLabels(self.HEADERS)
         self.table.horizontalHeader().setSectionResizeMode(QHeaderView.ResizeMode.ResizeToContents)
-        self.table.horizontalHeader().setSectionResizeMode(1, QHeaderView.ResizeMode.Stretch)
-        self.table.horizontalHeader().setMinimumSectionSize(58)
+        self.table.horizontalHeader().setSectionResizeMode(self.COL_LABEL, QHeaderView.ResizeMode.Stretch)
+        self.table.horizontalHeader().setMinimumSectionSize(40)
+        self.table.horizontalHeaderItem(self.COL_PIN).setToolTip(
+            "📌 고정: 체크하면 이 피크의 모든 파라미터가 fitting에서 제외됩니다\n"
+            "(한 피크를 잡아두고 나머지만 최적화). 위치만 고정하려면 행을 우클릭하세요.")
+        self.table.setContextMenuPolicy(Qt.ContextMenuPolicy.CustomContextMenu)
+        self.table.customContextMenuRequested.connect(self._context_menu)
         self.table.verticalHeader().setVisible(True)
         self.table.verticalHeader().setDefaultSectionSize(32)
         self.table.setAlternatingRowColors(True)
@@ -237,32 +244,38 @@ class PeakTable(QWidget):
             fractions = fitting.area_fractions(region)
             for i, p in enumerate(region.peaks):
                 self._make_type_combo(i, p)
-                self._set_item(i, 1, p.label, editable=True)
+                self._make_pin_item(i, p)
+                self._set_item(i, self.COL_LABEL, p.label, editable=True)
                 # match the component color used in the plot
                 tint = QColor(COMPONENT_COLORS[i % len(COMPONENT_COLORS)])
                 tint.setAlpha(55)
-                self.table.item(i, 1).setBackground(tint)
+                self.table.item(i, self.COL_LABEL).setBackground(tint)
                 shape_combo = QComboBox()
                 shape_combo.addItems(PEAK_SHAPES)
                 shape_combo.setCurrentText(p.shape)
                 shape_combo.currentTextChanged.connect(
                     lambda s, row=i: self._shape_changed(row, s))
-                self.table.setCellWidget(i, 2, shape_combo)
-                for col, (pname, _) in zip((3, 4, 5), PARAM_COLS[:3]):
+                self.table.setCellWidget(i, self.COL_SHAPE, shape_combo)
+                for col, (pname, _) in zip((self.COL_CENTER, self.COL_FWHM, self.COL_AREA),
+                                           PARAM_COLS[:3]):
                     spec = getattr(p, pname)
-                    self._set_item(i, col, f"{spec.value:.3f}" if pname != "area" else f"{spec.value:.1f}",
+                    prefix = "🔒 " if (col == self.COL_CENTER and not spec.vary
+                                       and spec.expr is None and not p.pinned) else ""
+                    self._set_item(i, col,
+                                   prefix + (f"{spec.value:.3f}" if pname != "area" else f"{spec.value:.1f}"),
                                    editable=spec.expr is None,
                                    tooltip=self._spec_tooltip(spec))
-                self._set_item(i, 6, f"{fractions[i]:.1f}" if i < len(fractions) else "-", editable=False)
-                self._set_item(i, 7, f"{p.mix.value:.0f}", editable=p.mix.expr is None,
+                self._set_item(i, self.COL_FRAC,
+                               f"{fractions[i]:.1f}" if i < len(fractions) else "-", editable=False)
+                self._set_item(i, self.COL_MIX, f"{p.mix.value:.0f}", editable=p.mix.expr is None,
                                tooltip="0 = Gaussian, 100 = Lorentzian")
-                self._set_item(i, 8, f"{p.asym.value:.2f}", editable=p.asym.expr is None,
+                self._set_item(i, self.COL_ASYM, f"{p.asym.value:.2f}", editable=p.asym.expr is None,
                                tooltip="GL_TAIL: 지수꼬리 길이(eV) / DONIACH: α")
                 btn = QPushButton("🔗" if self._has_constraint(p) else "…")
                 btn.setToolTip("값 고정 / 범위 / 다른 피크와의 관계식 설정")
                 btn.setFixedWidth(40)
                 btn.clicked.connect(lambda _=False, row=i: self._open_constraints(row))
-                self.table.setCellWidget(i, 9, btn)
+                self.table.setCellWidget(i, self.COL_LINK, btn)
         finally:
             self._updating = False
 
@@ -282,6 +295,54 @@ class PeakTable(QWidget):
                              "· 단일 — 구속 없는 일반 피크")
             combo.currentTextChanged.connect(lambda t, r=row: self._type_changed(r, t))
         self.table.setCellWidget(row, 0, combo)
+
+    def _make_pin_item(self, row: int, p: Peak) -> None:
+        item = QTableWidgetItem("")
+        if p.kind == "doublet_partner":
+            item.setFlags(Qt.ItemFlag.ItemIsSelectable | Qt.ItemFlag.ItemIsEnabled)
+            item.setText("·")
+            item.setToolTip("doublet 짝은 주피크를 따라갑니다 — 주피크를 📌 하세요")
+        else:
+            item.setFlags(Qt.ItemFlag.ItemIsSelectable | Qt.ItemFlag.ItemIsEnabled
+                          | Qt.ItemFlag.ItemIsUserCheckable)
+            item.setCheckState(Qt.CheckState.Checked if p.pinned else Qt.CheckState.Unchecked)
+            item.setToolTip("체크 = 이 피크 전체 고정 (나머지만 최적화)\n위치만 고정: 행 우클릭")
+        self.table.setItem(row, self.COL_PIN, item)
+
+    def _context_menu(self, pos) -> None:
+        from PySide6.QtWidgets import QMenu
+        row = self.table.rowAt(pos.y())
+        if self.region is None or row < 0 or row >= len(self.region.peaks):
+            return
+        p = self.region.peaks[row]
+        name = p.label or f"Peak {row + 1}"
+        menu = QMenu(self)
+        if p.kind != "doublet_partner":
+            act_pin = menu.addAction(("📌 전체 고정 해제" if p.pinned else "📌 전체 고정") + f" — {name}")
+            pos_fixed = (not p.center.vary) and p.center.expr is None
+            act_pos = menu.addAction("🔒 위치 고정 해제" if pos_fixed else
+                                     "🔒 위치만 고정 (면적·폭은 최적화)")
+        else:
+            act_pin = act_pos = None
+        act_free = menu.addAction("🔓 모든 구속 해제 (Free)")
+        chosen = menu.exec(self.table.viewport().mapToGlobal(pos))
+        if chosen is None:
+            return
+        if chosen is act_pin:
+            p.pinned = not p.pinned
+            self._status(f"📌 {name}: {'고정됨' if p.pinned else '고정 해제'}")
+        elif chosen is act_pos:
+            if p.center.expr is not None:
+                self._status(f"{name}: 위치가 관계식으로 묶여 있습니다 — 🔗에서 관계식을 지우세요")
+                return
+            p.center.vary = not p.center.vary
+            self._status(f"🔒 {name}: 위치 {p.center.value:.2f} eV "
+                         f"{'고정 해제' if p.center.vary else '고정 — 면적·FWHM은 계속 최적화됩니다'}")
+        elif chosen is act_free:
+            self.table.setCurrentCell(row, self.COL_LABEL)
+            self._free_peak()
+            return
+        self.modelChanged.emit()
 
     def _partner_row(self, row: int) -> int | None:
         pat = f"p{row}_center"
@@ -439,19 +500,27 @@ class PeakTable(QWidget):
         item = self.table.item(row, col)
         if item is None:
             return
-        text = item.text().strip()
+        if col == self.COL_PIN:
+            pinned = item.checkState() == Qt.CheckState.Checked
+            if pinned != p.pinned:
+                p.pinned = pinned
+                name = p.label or f"Peak {row + 1}"
+                self._status(f"📌 {name}: {'고정됨 — fitting에서 제외됩니다' if pinned else '고정 해제'}")
+                self.modelChanged.emit()
+            return
+        text = item.text().replace("🔒", "").strip()
         try:
-            if col == 1:
+            if col == self.COL_LABEL:
                 p.label = text
-            elif col == 3:
+            elif col == self.COL_CENTER:
                 p.center.value = float(text)
-            elif col == 4:
+            elif col == self.COL_FWHM:
                 p.fwhm.value = float(text)
-            elif col == 5:
+            elif col == self.COL_AREA:
                 p.area.value = float(text)
-            elif col == 7:
+            elif col == self.COL_MIX:
                 p.mix.value = min(100.0, max(0.0, float(text)))
-            elif col == 8:
+            elif col == self.COL_ASYM:
                 p.asym.value = float(text)
             else:
                 return
@@ -539,6 +608,7 @@ class PeakTable(QWidget):
         p.area.min, p.area.max = 0.0, math.inf
         p.mix.min, p.mix.max = 0.0, 100.0
         p.kind = "single"
+        p.pinned = False
         self._fix_orphan_kinds()
         self.modelChanged.emit()
         parts = []

@@ -32,6 +32,8 @@ def build_parameters(peaks: list[Peak], only_peak: int | None = None) -> Paramet
             vary = spec.vary and spec.expr is None
             if only_peak is not None and i != only_peak:
                 vary = False
+            if peak.pinned:  # 📌 frozen peak: nothing about it moves
+                vary = False
             params.add(
                 param_name(i, pname),
                 value=spec.value,
@@ -125,6 +127,10 @@ def fit_region(
 
     params = build_parameters(region.peaks, only_peak=only_peak)
     _clamp_centers_to_window(params, region.peaks, float(xw[0]), float(xw[-1]))
+    if not any(p.vary for p in params.values()):
+        res = eval_model(region)
+        res.message = "최적화할 자유 파라미터가 없습니다 (전부 고정/📌) — 핀을 풀고 fitting하세요"
+        return res
 
     def residual(p: Parameters) -> np.ndarray:
         model = np.sum(eval_peaks(p, region.peaks, xw), axis=0)
