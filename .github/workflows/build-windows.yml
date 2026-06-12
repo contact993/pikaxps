@@ -1,0 +1,45 @@
+name: build-windows
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  windows:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          architecture: x64
+      - name: Install
+        run: pip install -e . pyinstaller
+      - name: Build
+        run: >
+          pyinstaller --noconfirm --clean --windowed --name "XPSFit Studio"
+          --icon build_scripts/icon.ico
+          --add-data "src/xpsfit/refdb;xpsfit/refdb"
+          --paths src
+          --hidden-import openpyxl --hidden-import xlrd
+          --exclude-module PySide6.QtWebEngineCore
+          --exclude-module PySide6.QtWebEngineWidgets
+          --exclude-module PySide6.QtQml
+          --exclude-module PySide6.QtQuick
+          --exclude-module PySide6.QtPdf
+          --exclude-module PySide6.Qt3DCore
+          build_scripts/entry.py
+      - name: Smoke check bundle exists
+        shell: pwsh
+        run: |
+          if (!(Test-Path "dist/XPSFit Studio/XPSFit Studio.exe")) { exit 1 }
+      - name: Zip
+        shell: pwsh
+        run: Compress-Archive -Path "dist/XPSFit Studio" -DestinationPath "XPSFit-Studio-Windows.zip"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: XPSFit-Studio-Windows
+          path: XPSFit-Studio-Windows.zip
+          retention-days: 14

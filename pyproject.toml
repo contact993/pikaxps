@@ -1,0 +1,36 @@
+[project]
+name = "xpsfit"
+version = "0.1.0"
+description = "XPSFit Studio - cross-platform XPS peak fitting with built-in reference database and Korean help"
+requires-python = ">=3.12"
+dependencies = [
+    "PySide6>=6.8",
+    "pyqtgraph>=0.13",
+    "lmfit>=1.3",
+    "scipy>=1.14",
+    "numpy>=2.0",
+    "pandas>=2.2",
+    "openpyxl>=3.1",
+    "xlrd>=2.0",
+    "matplotlib>=3.9",
+    "vamas>=0.2",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8.0", "pyinstaller>=6.10", "xlwt>=1.3"]
+
+[project.gui-scripts]
+xpsfit = "xpsfit.app:main"
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+xpsfit = ["refdb/*.json", "refdb/explanations/*.md"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
