@@ -286,6 +286,9 @@ class MainWindow(QMainWindow):
             act.setCheckable(True)
             act.setChecked(current_language() == code)
         m_help.addSeparator()
+        self._add_action(m_help, t("⭐ Star Corepeak on GitHub", "⭐ GitHub에서 Corepeak Star"),
+                         lambda: self._open_url(""))
+        self._add_action(m_help, t("📑 How to cite Corepeak…", "📑 Corepeak 인용 방법…"), self._cite)
         self._add_action(m_help, t("💬 Send feedback / report a bug", "💬 피드백 보내기 / 버그 신고"),
                          lambda: self._open_url("/issues/new/choose"))
         self._add_action(m_help, t("📚 Submit a reference value", "📚 레퍼런스 값 제보"), lambda: self._open_url(
@@ -738,13 +741,62 @@ class MainWindow(QMainWindow):
             url = "https://github.com/sponsors/contact993"
         QDesktopServices.openUrl(QUrl(url))
 
+    def _citation_bibtex(self) -> str:
+        from .. import REPO_URL
+        return (
+            "@software{corepeak,\n"
+            "  author  = {Kim, Taehee},\n"
+            "  title   = {Corepeak: free cross-platform XPS peak fitting with a built-in fit auditor},\n"
+            "  year    = {2026},\n"
+            f"  url     = {{{REPO_URL}}},\n"
+            f"  version = {{{__version__}}}\n"
+            "}"
+        )
+
+    def _cite(self) -> None:
+        from PySide6.QtWidgets import QApplication
+        from PySide6.QtGui import QDesktopServices
+        from PySide6.QtCore import QUrl
+        bibtex = self._citation_bibtex()
+        box = QMessageBox(self)
+        box.setWindowTitle(t("How to cite Corepeak", "Corepeak 인용 방법"))
+        box.setText(t(
+            "If Corepeak helped your research, please cite it.\n"
+            "Citations are how a free academic tool justifies its continued development.",
+            "Corepeak이 연구에 도움이 됐다면 인용해 주세요.\n"
+            "인용은 무료 학술 도구가 지속 개발을 정당화하는 방법입니다."))
+        box.setInformativeText(
+            t("A peer-reviewed software paper (with DOI) is in preparation; until then, cite the "
+              "repository and the version you used:", "DOI가 있는 동료심사 논문을 준비 중입니다. 그 전까지는 "
+              "저장소와 사용한 버전을 인용해 주세요:")
+            + f"<pre style='font-family:monospace;font-size:11px'>{bibtex}</pre>")
+        copy_btn = box.addButton(t("Copy BibTeX", "BibTeX 복사"), QMessageBox.ButtonRole.ActionRole)
+        web_btn = box.addButton(t("Open citation page", "인용 페이지 열기"), QMessageBox.ButtonRole.ActionRole)
+        box.addButton(QMessageBox.StandardButton.Close)
+        box.exec()
+        clicked = box.clickedButton()
+        if clicked is copy_btn:
+            QApplication.clipboard().setText(bibtex)
+            self.statusBar().showMessage(
+                t("BibTeX copied to clipboard.", "BibTeX를 클립보드에 복사했습니다."), 5000)
+        elif clicked is web_btn:
+            QDesktopServices.openUrl(QUrl("https://contact993.github.io/corepeak/cite/"))
+
     def _about(self) -> None:
+        from .. import REPO_URL
+        host = REPO_URL.replace("https://", "")
         QMessageBox.about(
             self, APP_NAME,
             f"<b>{APP_NAME} {__version__}</b> — free XPS peak fitting (GPLv3)<br>"
-            "XPSPEAK 워크플로 + fit audit + 레퍼런스 DB + 한국어 가이드<br><br>"
-            "엔진: lmfit / scipy · 플로팅: pyqtgraph<br>"
-            "Uses Qt via PySide6 under the LGPLv3 — Qt source: https://www.qt.io/download<br><br>"
-            "BE 데이터베이스: 문헌 레퍼런스 값 (각 항목에 출처 표기) — "
-            "Biesinger et al., Moulder Handbook, NIST SRD 20<br>"
-            "<a href='https://github.com/contact993/xpsfit'>github.com/contact993/xpsfit</a>")
+            + t("XPSPEAK workflow + fit auditor + reference DB + guides",
+                "XPSPEAK 워크플로 + fit audit + 레퍼런스 DB + 한국어 가이드") + "<br><br>"
+            + "Engine: lmfit / scipy · pyqtgraph<br>"
+            + "Uses Qt via PySide6 under the LGPLv3 — Qt source: https://www.qt.io/download<br><br>"
+            + t("BE database: literature reference values (each entry cites its source) — ",
+                "BE 데이터베이스: 문헌 레퍼런스 값 (각 항목에 출처 표기) — ")
+            + "Biesinger et al., Moulder Handbook, NIST SRD 20<br><br>"
+            + t("If Corepeak helps your research, please ⭐ star it on GitHub and cite it "
+                "(Help ▸ How to cite Corepeak).",
+                "Corepeak이 연구에 도움이 됐다면 GitHub에서 ⭐ Star와 인용 부탁드립니다 "
+                "(도움말 ▸ Corepeak 인용 방법).") + "<br>"
+            + f"<a href='{REPO_URL}'>{host}</a>")
