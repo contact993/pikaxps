@@ -19,7 +19,7 @@ jobs:
         run: pip install -e . pyinstaller
       - name: Build
         run: >
-          pyinstaller --noconfirm --clean --windowed --name "XPSFit Studio"
+          pyinstaller --noconfirm --clean --windowed --name "Corepeak"
           --icon build_scripts/icon.ico
           --add-data "src/xpsfit/refdb;xpsfit/refdb"
           --paths src
@@ -34,12 +34,12 @@ jobs:
       - name: Smoke check bundle exists
         shell: pwsh
         run: |
-          if (!(Test-Path "dist/XPSFit Studio/XPSFit Studio.exe")) { exit 1 }
+          if (!(Test-Path "dist/Corepeak/Corepeak.exe")) { exit 1 }
       - name: Zip
         shell: pwsh
-        run: Compress-Archive -Path "dist/XPSFit Studio" -DestinationPath "XPSFit-Studio-Windows.zip"
+        run: Compress-Archive -Path "dist/Corepeak" -DestinationPath "Corepeak-Windows-x64.zip"
       - uses: actions/upload-artifact@v4
         with:
-          name: XPSFit-Studio-Windows
-          path: XPSFit-Studio-Windows.zip
-          retention-days: 14
+          name: Corepeak-Windows-x64
+          path: Corepeak-Windows-x64.zip
+          retention-days: 30
