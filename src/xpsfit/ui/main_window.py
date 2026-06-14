@@ -753,29 +753,38 @@ class MainWindow(QMainWindow):
             "}"
         )
 
+    def _citation_sentence(self) -> str:
+        from .. import REPO_URL
+        return t(f"XPS spectra were analyzed (peak-fitted) using Corepeak ({REPO_URL}).",
+                 f"XPS 스펙트럼은 Corepeak ({REPO_URL})으로 분석(피크 피팅)하였다.")
+
     def _cite(self) -> None:
         from PySide6.QtWidgets import QApplication
         from PySide6.QtGui import QDesktopServices
         from PySide6.QtCore import QUrl
+        sentence = self._citation_sentence()
         bibtex = self._citation_bibtex()
         box = QMessageBox(self)
         box.setWindowTitle(t("How to cite Corepeak", "Corepeak 인용 방법"))
         box.setText(t(
-            "If Corepeak helped your research, please cite it.\n"
-            "Citations are how a free academic tool justifies its continued development.",
-            "Corepeak이 연구에 도움이 됐다면 인용해 주세요.\n"
-            "인용은 무료 학술 도구가 지속 개발을 정당화하는 방법입니다."))
+            "The simplest way: add one line to your Methods / Experimental section.\n"
+            "For most journals this is a complete software citation — nothing more is needed.",
+            "가장 간단한 방법: Methods / Experimental 섹션에 한 줄 넣으면 됩니다.\n"
+            "대부분의 저널에선 이걸로 충분한 소프트웨어 인용입니다 — 그 이상 필요 없습니다."))
         box.setInformativeText(
-            t("A peer-reviewed software paper (with DOI) is in preparation; until then, cite the "
-              "repository and the version you used:", "DOI가 있는 동료심사 논문을 준비 중입니다. 그 전까지는 "
-              "저장소와 사용한 버전을 인용해 주세요:")
-            + f"<pre style='font-family:monospace;font-size:11px'>{bibtex}</pre>")
-        copy_btn = box.addButton(t("Copy BibTeX", "BibTeX 복사"), QMessageBox.ButtonRole.ActionRole)
+            f"<pre style='font-family:monospace;font-size:11px;white-space:pre-wrap'>{sentence}</pre>"
+            + t("Need a formal reference-list entry? Copy the BibTeX or open the citation page.",
+                "참고문헌 목록용 형식 인용이 필요하면 BibTeX를 복사하거나 인용 페이지를 여세요."))
+        sent_btn = box.addButton(t("Copy sentence", "문장 복사"), QMessageBox.ButtonRole.ActionRole)
+        bib_btn = box.addButton(t("Copy BibTeX", "BibTeX 복사"), QMessageBox.ButtonRole.ActionRole)
         web_btn = box.addButton(t("Open citation page", "인용 페이지 열기"), QMessageBox.ButtonRole.ActionRole)
         box.addButton(QMessageBox.StandardButton.Close)
         box.exec()
         clicked = box.clickedButton()
-        if clicked is copy_btn:
+        if clicked is sent_btn:
+            QApplication.clipboard().setText(sentence)
+            self.statusBar().showMessage(t("Citation sentence copied.", "인용 문장을 복사했습니다."), 5000)
+        elif clicked is bib_btn:
             QApplication.clipboard().setText(bibtex)
             self.statusBar().showMessage(
                 t("BibTeX copied to clipboard.", "BibTeX를 클립보드에 복사했습니다."), 5000)

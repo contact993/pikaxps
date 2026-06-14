@@ -1,120 +1,17 @@
-/* ---------- Corepeak brand + landing design system ---------- */
+/* Corepeak brand accent for the Starlight documentation pages.
+   The marketing landing is a standalone page (src/pages/) with its own inline
+   styles and does NOT load this file — so only docs-page theming lives here.
+
+   Both light and dark ramps are defined in full. (Previously the dark theme was
+   missing --sl-color-accent-high, so bold links rendered dark-navy on a dark
+   background and were invisible.) */
 :root {
   --sl-color-accent-low: #d7e3fb;
   --sl-color-accent: #2563eb;
-  --sl-color-accent-high: #16243a;
-  --cp-grad-1: #eef4ff;
-  --cp-grad-2: #f7f9fc;
-  --cp-ink: #16243a;
-  --cp-sub: #5b6b7e;
-  --cp-card-bg: #ffffff;
-  --cp-border: #e3e9f2;
+  --sl-color-accent-high: #16243a; /* dark link/heading ink — readable on light */
 }
 :root[data-theme='dark'] {
+  --sl-color-accent-low: #1b2a3f;
   --sl-color-accent: #5b9bff;
-  --cp-grad-1: #131a26;
-  --cp-grad-2: #0d1117;
-  --cp-ink: #eef2f8;
-  --cp-sub: #9fb0c4;
-  --cp-card-bg: #161d29;
-  --cp-border: #28323f;
+  --sl-color-accent-high: #cfe0ff; /* light link/heading ink — readable on dark */
 }
-
-/* full-bleed helper inside the centered splash column */
-.cp-fullbleed {
-  width: 100vw;
-  margin-inline: calc(50% - 50vw);
-}
-
-/* hide Starlight's auto page-title H1 on our custom landing pages only */
-body:has(.cp-hero) h1#_top { display: none; }
-/* let the hero sit flush at the top of the splash content; prevent full-bleed scrollbar */
-body:has(.cp-hero) .sl-markdown-content { margin-top: 0; }
-body:has(.cp-hero) { overflow-x: hidden; }
-
-/* ---------- hero ---------- */
-.cp-hero {
-  background: radial-gradient(1200px 500px at 50% -10%, var(--cp-grad-1), var(--cp-grad-2));
-  border-bottom: 1px solid var(--cp-border);
-  padding: 3.5rem 1.5rem 0;
-  text-align: center;
-}
-.cp-hero-inner { max-width: 60rem; margin: 0 auto; }
-.cp-eyebrow {
-  display: inline-block;
-  font-size: 0.8rem; font-weight: 600; letter-spacing: 0.04em;
-  color: var(--sl-color-accent);
-  background: color-mix(in srgb, var(--sl-color-accent) 12%, transparent);
-  padding: 0.35rem 0.8rem; border-radius: 999px; margin: 0 0 1.2rem;
-}
-.cp-title {
-  font-size: clamp(2.1rem, 5.2vw, 3.4rem); line-height: 1.08; letter-spacing: -0.025em;
-  font-weight: 800; color: var(--cp-ink); margin: 0 0 1rem;
-}
-.cp-title .cp-accent {
-  background: linear-gradient(90deg, #2563eb, #6aa0ff);
-  -webkit-background-clip: text; background-clip: text; color: transparent;
-}
-.cp-sub {
-  font-size: clamp(1rem, 2vw, 1.2rem); line-height: 1.6; color: var(--cp-sub);
-  max-width: 42rem; margin: 0 auto 1.8rem;
-}
-.cp-cta-row { display: flex; gap: 0.8rem; justify-content: center; flex-wrap: wrap; margin-bottom: 0.6rem; }
-.cp-btn {
-  display: inline-flex; align-items: center; gap: 0.4rem;
-  font-weight: 600; font-size: 1rem; padding: 0.7rem 1.5rem; border-radius: 10px;
-  text-decoration: none; transition: transform .12s ease, box-shadow .12s ease, background .12s ease;
-}
-.cp-btn-primary { background: var(--sl-color-accent); color: #fff; box-shadow: 0 6px 18px -6px rgba(37,99,235,.6); }
-.cp-btn-primary:hover { background: #1d4ed8; transform: translateY(-1px); }
-.cp-btn-ghost { border: 1px solid var(--cp-border); color: var(--cp-ink); background: var(--cp-card-bg); }
-.cp-btn-ghost:hover { border-color: var(--sl-color-accent); transform: translateY(-1px); }
-.cp-note { font-size: 0.85rem; color: var(--cp-sub); margin-top: 0.4rem; }
-
-/* framed screenshot, overlapping into next section */
-.cp-shot {
-  max-width: 56rem; margin: 2.4rem auto -3rem; padding: 0 0.5rem;
-}
-.cp-shot img {
-  width: 100%; height: auto; display: block;
-  border: 1px solid var(--cp-border); border-radius: 14px;
-  box-shadow: 0 30px 60px -25px rgba(20, 40, 80, .45), 0 10px 24px -16px rgba(20,40,80,.4);
-}
-
-/* ---------- sections ---------- */
-.cp-section { max-width: 64rem; margin: 0 auto; padding: 4.5rem 1.5rem 1rem; }
-.cp-section h2 {
-  font-size: clamp(1.5rem, 3vw, 2rem); font-weight: 800; letter-spacing: -0.02em;
-  color: var(--cp-ink); text-align: center; margin: 0 0 0.5rem; border: 0;
-}
-.cp-section .cp-lead { text-align: center; color: var(--cp-sub); max-width: 40rem; margin: 0 auto 2.2rem; }
-
-.cp-features { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; }
-@media (max-width: 640px) { .cp-features { grid-template-columns: 1fr; } }
-.cp-card {
-  background: var(--cp-card-bg); border: 1px solid var(--cp-border); border-radius: 14px;
-  padding: 1.4rem 1.4rem 1.3rem; transition: transform .12s ease, box-shadow .12s ease, border-color .12s ease;
-}
-.cp-card:hover { transform: translateY(-3px); box-shadow: 0 16px 34px -20px rgba(20,40,80,.35); border-color: color-mix(in srgb, var(--sl-color-accent) 40%, var(--cp-border)); }
-.cp-card .cp-ico { font-size: 1.6rem; }
-.cp-card h3 { font-size: 1.05rem; font-weight: 700; margin: 0.6rem 0 0.4rem; color: var(--cp-ink); }
-.cp-card p { font-size: 0.92rem; line-height: 1.55; color: var(--cp-sub); margin: 0; }
-
-/* audit highlight band */
-.cp-band {
-  background: linear-gradient(120deg, color-mix(in srgb, var(--sl-color-accent) 8%, transparent), transparent);
-  border-block: 1px solid var(--cp-border); margin-top: 3.5rem; padding: 3rem 1.5rem;
-}
-.cp-band-inner { max-width: 52rem; margin: 0 auto; text-align: center; }
-.cp-band .cp-ico { font-size: 2.2rem; }
-.cp-band h2 { border: 0; }
-
-/* comparison table */
-.cp-section table { width: 100%; border-collapse: collapse; font-size: 0.92rem; }
-.cp-section table :is(th, td) { padding: 0.6rem 0.7rem; border-bottom: 1px solid var(--cp-border); text-align: center; }
-.cp-section table th:first-child, .cp-section table td:first-child { text-align: left; color: var(--cp-sub); }
-.cp-section table thead th { color: var(--cp-ink); font-weight: 700; }
-
-/* final CTA */
-.cp-final { text-align: center; padding: 4rem 1.5rem 4.5rem; }
-.cp-final h2 { border: 0; font-size: clamp(1.6rem, 3.2vw, 2.1rem); font-weight: 800; color: var(--cp-ink); margin-bottom: 1.2rem; }

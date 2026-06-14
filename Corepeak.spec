@@ -47,5 +47,5 @@ app = BUNDLE(
     coll,
     name='Corepeak.app',
     icon='build_scripts/icon.icns',
-    bundle_identifier='com.corepeak.app',
+    bundle_identifier=None,
 )

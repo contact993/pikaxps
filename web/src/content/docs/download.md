@@ -7,10 +7,10 @@ Corepeak is free and open source (GPLv3). No account, no install of Python requi
 
 ## Latest release
 
-Get the signed installers from the **[GitHub Releases page →](https://github.com/contact993/corepeak/releases)**.
+Get the installers from the **[GitHub Releases page →](https://github.com/contact993/corepeak/releases)**.
 
 ### macOS (Apple Silicon)
-1. Download the `.app.zip`, unzip it, and move **Corepeak.app** to Applications.
+1. Download **`Corepeak-macOS.dmg`**, open it, and drag **Corepeak** to Applications.
 2. First launch: **right-click → Open → Open** (one-time, because the app isn't from the App Store).
 3. If you ever see "damaged, can't be opened": run `xattr -cr "/Applications/Corepeak.app"` in Terminal, then right-click → Open.
 
