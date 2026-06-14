@@ -19,7 +19,7 @@ software repository and the release version you used:
   title   = {Corepeak: free cross-platform XPS peak fitting with a built-in fit auditor},
   year    = {2026},
   url     = {https://github.com/contact993/corepeak},
-  version = {0.1.2}
+  version = {0.1.3}
 }
 ```
 
