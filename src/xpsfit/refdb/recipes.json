@@ -1,158 +1,502 @@
 {
-  "_comment": "Fitting recipes: one-click starting models. Positions/widths are literature starting points (see ref keys in binding_energies.json); relative areas start free unless locked. doublet=true expands every species peak into a spin-orbit pair using the element's splitting/ratio.",
-  "recipes": [
+ "_comment": "Fitting recipes: one-click starting models. Positions/widths are literature starting points (see ref keys in binding_energies.json); relative areas start free unless locked. doublet=true expands every species peak into a spin-orbit pair using the element's splitting/ratio.",
+ "recipes": [
+  {
+   "id": "c1s_adventitious",
+   "name": "C 1s — adventitious carbon",
+   "element": "C",
+   "orbital": "1s",
+   "doublet": false,
+   "description_ko": "대부분 시료 표면의 우발탄소 기본 세트. C-C 284.8을 기준으로 FWHM을 묶고 시작. 대전 보정 기준으로도 사용.",
+   "ref": "biesinger2011",
+   "peaks": [
     {
-      "id": "c1s_adventitious",
-      "name": "C 1s — adventitious carbon",
-      "element": "C", "orbital": "1s", "doublet": false,
-      "description_ko": "대부분 시료 표면의 우발탄소 기본 세트. C-C 284.8을 기준으로 FWHM을 묶고 시작. 대전 보정 기준으로도 사용.",
-      "ref": "biesinger2011",
-      "peaks": [
-        {"label": "C-C/C-H", "center": 284.8, "center_tol": 0.3, "fwhm": 1.3, "mix": 30, "area_scale": 1.0},
-        {"label": "C-O", "center": 286.2, "center_tol": 0.4, "link_fwhm": true, "area_scale": 0.25},
-        {"label": "C=O", "center": 287.9, "center_tol": 0.4, "link_fwhm": true, "area_scale": 0.1},
-        {"label": "O-C=O", "center": 288.8, "center_tol": 0.4, "link_fwhm": true, "area_scale": 0.1}
-      ]
+     "label": "C-C/C-H",
+     "center": 284.8,
+     "center_tol": 0.3,
+     "fwhm": 1.3,
+     "mix": 30,
+     "area_scale": 1.0
     },
     {
-      "id": "o1s_metal_oxide",
-      "name": "O 1s — metal oxide surface",
-      "element": "O", "orbital": "1s", "doublet": false,
-      "description_ko": "전이금속 산화물 표준 3성분: lattice O / 결함·OH / 흡착수. OH·결함 성분 과대해석은 흔한 오류 - 면적 비교는 신중히.",
-      "ref": "biesinger2011",
-      "peaks": [
-        {"label": "lattice O", "center": 530.0, "center_tol": 0.5, "fwhm": 1.2, "mix": 30, "area_scale": 1.0},
-        {"label": "OH/defect", "center": 531.3, "center_tol": 0.5, "link_fwhm": false, "fwhm": 1.5, "area_scale": 0.5},
-        {"label": "adsorbed H2O", "center": 533.0, "center_tol": 0.7, "link_fwhm": false, "fwhm": 1.6, "area_scale": 0.2}
-      ]
+     "label": "C-O",
+     "center": 286.2,
+     "center_tol": 0.4,
+     "link_fwhm": true,
+     "area_scale": 0.25
     },
     {
-      "id": "n1s_doped_carbon",
-      "name": "N 1s — N-doped carbon",
-      "element": "N", "orbital": "1s", "doublet": false,
-      "description_ko": "질소 도핑 탄소 촉매 표준 세트: pyridinic / pyrrolic / graphitic / N-oxide. ORR 활성 상관 분석에 자주 쓰이는 구분.",
-      "ref": "nist_srd20",
-      "peaks": [
-        {"label": "pyridinic N", "center": 398.4, "center_tol": 0.3, "fwhm": 1.2, "mix": 30, "area_scale": 1.0},
-        {"label": "pyrrolic N", "center": 400.2, "center_tol": 0.3, "link_fwhm": true, "area_scale": 0.8},
-        {"label": "graphitic N", "center": 401.1, "center_tol": 0.4, "link_fwhm": true, "area_scale": 0.6},
-        {"label": "N-oxide", "center": 405.5, "center_tol": 1.0, "link_fwhm": true, "area_scale": 0.2}
-      ]
+     "label": "C=O",
+     "center": 287.9,
+     "center_tol": 0.4,
+     "link_fwhm": true,
+     "area_scale": 0.1
     },
     {
-      "id": "s2p_sulfide_sulfate",
-      "name": "S 2p — sulfide + sulfate (doublets)",
-      "element": "S", "orbital": "2p", "doublet": true,
-      "description_ko": "황화물 촉매와 표면 산화(sulfate) 동시 추적. 각 화학종은 1.18 eV / 2:1 doublet으로 자동 전개됨.",
-      "ref": "moulder1992",
-      "peaks": [
-        {"label": "sulfide S2-", "center": 161.8, "center_tol": 0.5, "fwhm": 1.0, "mix": 30, "area_scale": 1.0},
-        {"label": "sulfate SO4", "center": 168.8, "center_tol": 0.6, "link_fwhm": true, "area_scale": 0.3}
-      ]
-    },
-    {
-      "id": "ni2p3_screen",
-      "name": "Ni 2p3/2 — metal / NiO / hydroxide screen",
-      "element": "Ni", "orbital": "2p", "doublet": false,
-      "description_ko": "Ni 2p3/2 영역만 fitting하는 관례적 screening 세트 (2p1/2는 제외). 정밀 정량은 Biesinger 2009의 multiplet envelope 고정비율 사용 권장 - 이 세트는 출발점.",
-      "ref": "biesinger2009ni",
-      "peaks": [
-        {"label": "Ni(0)", "center": 852.6, "center_tol": 0.2, "fwhm": 1.0, "mix": 50, "area_scale": 1.0},
-        {"label": "NiO main", "center": 853.7, "center_tol": 0.3, "fwhm": 1.3, "mix": 30, "area_scale": 0.5},
-        {"label": "NiO/Ni(OH)2 multiplet", "center": 855.5, "center_tol": 0.5, "fwhm": 2.2, "mix": 30, "area_scale": 0.8},
-        {"label": "satellite", "center": 861.0, "center_tol": 1.0, "fwhm": 3.5, "mix": 30, "area_scale": 0.6}
-      ]
-    },
-    {
-      "id": "co2p3_screen",
-      "name": "Co 2p3/2 — metal / Co3O4 / Co(II) screen",
-      "element": "Co", "orbital": "2p", "doublet": false,
-      "description_ko": "Co 2p3/2 screening 세트. satellite 강도로 Co(II)/Co(III) 비율 판단: 강한 ~786 satellite = Co(II) 지문.",
-      "ref": "biesinger2011",
-      "peaks": [
-        {"label": "Co(0)", "center": 778.1, "center_tol": 0.2, "fwhm": 1.0, "mix": 50, "area_scale": 1.0},
-        {"label": "Co3O4 / Co(III)", "center": 779.6, "center_tol": 0.4, "fwhm": 1.6, "mix": 30, "area_scale": 0.8},
-        {"label": "Co(II) (CoO/Co(OH)2)", "center": 780.5, "center_tol": 0.6, "fwhm": 2.2, "mix": 30, "area_scale": 0.8},
-        {"label": "Co(II) satellite", "center": 786.4, "center_tol": 1.0, "fwhm": 3.5, "mix": 30, "area_scale": 0.4},
-        {"label": "Co(III) satellite", "center": 789.5, "center_tol": 1.0, "fwhm": 3.0, "mix": 30, "area_scale": 0.15}
-      ]
-    },
-    {
-      "id": "fe2p3_screen",
-      "name": "Fe 2p3/2 — metal / Fe(II) / Fe(III) screen",
-      "element": "Fe", "orbital": "2p", "doublet": false,
-      "description_ko": "Fe 2p3/2 screening 세트. satellite 위치가 산화수 지문: Fe(II) ~715, Fe(III) ~719 eV. Fe3O4는 두 성분 혼합으로 fitting.",
-      "ref": "biesinger2011",
-      "peaks": [
-        {"label": "Fe(0)", "center": 706.7, "center_tol": 0.2, "fwhm": 0.9, "mix": 50, "area_scale": 1.0},
-        {"label": "Fe(II) oxide", "center": 709.8, "center_tol": 0.5, "fwhm": 2.0, "mix": 30, "area_scale": 0.7},
-        {"label": "Fe(III) oxide", "center": 710.9, "center_tol": 0.5, "fwhm": 2.4, "mix": 30, "area_scale": 0.9},
-        {"label": "Fe(II) satellite", "center": 715.2, "center_tol": 1.0, "fwhm": 3.0, "mix": 30, "area_scale": 0.2},
-        {"label": "Fe(III) satellite", "center": 719.0, "center_tol": 1.0, "fwhm": 3.0, "mix": 30, "area_scale": 0.2}
-      ]
-    },
-    {
-      "id": "mn2p3_oxides",
-      "name": "Mn 2p3/2 — MnO / Mn2O3 / MnO2 screen",
-      "element": "Mn", "orbital": "2p", "doublet": false,
-      "description_ko": "Mn 산화물 screening. 산화수 확정은 Mn 3s splitting(MnO 6.0 / Mn2O3 5.4 / MnO2 4.7 eV) 교차 확인 권장.",
-      "ref": "biesinger2011",
-      "peaks": [
-        {"label": "Mn(II)", "center": 640.2, "center_tol": 0.5, "fwhm": 1.8, "mix": 30, "area_scale": 1.0},
-        {"label": "Mn(III)", "center": 641.9, "center_tol": 0.4, "fwhm": 2.2, "mix": 30, "area_scale": 0.8},
-        {"label": "Mn(IV)", "center": 642.4, "center_tol": 0.4, "fwhm": 2.0, "mix": 30, "area_scale": 0.6},
-        {"label": "Mn(II) satellite", "center": 645.5, "center_tol": 1.2, "fwhm": 3.0, "mix": 30, "area_scale": 0.25}
-      ]
-    },
-    {
-      "id": "cr2p3_screen",
-      "name": "Cr 2p3/2 — metal / Cr(III) / Cr(VI) screen",
-      "element": "Cr", "orbital": "2p", "doublet": false,
-      "description_ko": "Cr(VI)는 multiplet 없는 좁은 단일 피크, Cr(III)는 넓은 multiplet envelope - FWHM 차이가 판별 단서. Cr(VI)는 X선에 환원될 수 있으니 측정시간 의존성 확인.",
-      "ref": "biesinger2011",
-      "peaks": [
-        {"label": "Cr(0)", "center": 574.2, "center_tol": 0.2, "fwhm": 1.0, "mix": 50, "area_scale": 1.0},
-        {"label": "Cr(III) oxide", "center": 576.8, "center_tol": 0.5, "fwhm": 2.6, "mix": 30, "area_scale": 0.9},
-        {"label": "Cr(III) hydroxide", "center": 577.3, "center_tol": 0.5, "fwhm": 2.6, "mix": 30, "area_scale": 0.4},
-        {"label": "Cr(VI)", "center": 579.7, "center_tol": 0.6, "fwhm": 1.4, "mix": 30, "area_scale": 0.3}
-      ]
-    },
-    {
-      "id": "cu2p3_screen",
-      "name": "Cu 2p3/2 — Cu(0/I) / Cu(II) + shake-up",
-      "element": "Cu", "orbital": "2p", "doublet": false,
-      "description_ko": "Cu(0)과 Cu(I)은 이 영역에서 구분 불가(둘 다 ~932.5) - Cu LMM Auger로 확정할 것. 940-945 shake-up이 있으면 Cu(II) 존재 확정.",
-      "ref": "biesinger2010",
-      "peaks": [
-        {"label": "Cu(0)/Cu(I)", "center": 932.5, "center_tol": 0.3, "fwhm": 1.1, "mix": 40, "area_scale": 1.0},
-        {"label": "Cu(II)", "center": 933.6, "center_tol": 0.5, "fwhm": 2.2, "mix": 30, "area_scale": 0.5},
-        {"label": "Cu(II) shake-up A", "center": 941.5, "center_tol": 1.2, "fwhm": 3.5, "mix": 30, "area_scale": 0.25},
-        {"label": "Cu(II) shake-up B", "center": 944.0, "center_tol": 1.2, "fwhm": 3.0, "mix": 30, "area_scale": 0.15}
-      ]
-    },
-    {
-      "id": "pt4f_states",
-      "name": "Pt 4f — Pt(0) / Pt(II) / Pt(IV) (doublets)",
-      "element": "Pt", "orbital": "4f", "doublet": true,
-      "description_ko": "각 산화 상태가 3.33 eV / 4:3 doublet으로 자동 전개됨. 금속 Pt는 비대칭 - 정밀 fitting 시 Pt(0)만 GL_TAIL/DONIACH로 교체.",
-      "ref": "nist_srd20",
-      "peaks": [
-        {"label": "Pt(0)", "center": 71.1, "center_tol": 0.2, "fwhm": 1.0, "mix": 50, "area_scale": 1.0},
-        {"label": "Pt(II)", "center": 72.6, "center_tol": 0.4, "link_fwhm": false, "fwhm": 1.4, "mix": 30, "area_scale": 0.4},
-        {"label": "Pt(IV)", "center": 74.8, "center_tol": 0.5, "link_fwhm": false, "fwhm": 1.6, "mix": 30, "area_scale": 0.2}
-      ]
-    },
-    {
-      "id": "mo3d_oxides",
-      "name": "Mo 3d — Mo(IV) / Mo(V) / Mo(VI) (doublets)",
-      "element": "Mo", "orbital": "3d", "doublet": true,
-      "description_ko": "각 산화 상태가 3.15 eV / 3:2 doublet으로 자동 전개. 황화물 시료는 S 2s(~226.2)가 겹치므로 별도 피크로 추가할 것.",
-      "ref": "nist_srd20",
-      "peaks": [
-        {"label": "Mo(IV)", "center": 229.4, "center_tol": 0.5, "fwhm": 1.2, "mix": 30, "area_scale": 1.0},
-        {"label": "Mo(V)", "center": 231.0, "center_tol": 0.5, "link_fwhm": true, "area_scale": 0.4},
-        {"label": "Mo(VI)", "center": 232.6, "center_tol": 0.5, "link_fwhm": true, "area_scale": 0.5}
-      ]
+     "label": "O-C=O",
+     "center": 288.8,
+     "center_tol": 0.4,
+     "link_fwhm": true,
+     "area_scale": 0.1
     }
-  ]
+   ],
+   "description_en": "Default set for adventitious carbon on most sample surfaces. Start by linking the FWHM with C-C at 284.8 as the reference. Also used as the charge-referencing standard."
+  },
+  {
+   "id": "o1s_metal_oxide",
+   "name": "O 1s — metal oxide surface",
+   "element": "O",
+   "orbital": "1s",
+   "doublet": false,
+   "description_ko": "전이금속 산화물 표준 3성분: lattice O / 결함·OH / 흡착수. OH·결함 성분 과대해석은 흔한 오류 - 면적 비교는 신중히.",
+   "ref": "biesinger2011",
+   "peaks": [
+    {
+     "label": "lattice O",
+     "center": 530.0,
+     "center_tol": 0.5,
+     "fwhm": 1.2,
+     "mix": 30,
+     "area_scale": 1.0
+    },
+    {
+     "label": "OH/defect",
+     "center": 531.3,
+     "center_tol": 0.5,
+     "link_fwhm": false,
+     "fwhm": 1.5,
+     "area_scale": 0.5
+    },
+    {
+     "label": "adsorbed H2O",
+     "center": 533.0,
+     "center_tol": 0.7,
+     "link_fwhm": false,
+     "fwhm": 1.6,
+     "area_scale": 0.2
+    }
+   ],
+   "description_en": "Standard three components for transition-metal oxides: lattice O / defect-OH / adsorbed water. Over-interpreting the OH/defect component is a common error - compare areas with care."
+  },
+  {
+   "id": "n1s_doped_carbon",
+   "name": "N 1s — N-doped carbon",
+   "element": "N",
+   "orbital": "1s",
+   "doublet": false,
+   "description_ko": "질소 도핑 탄소 촉매 표준 세트: pyridinic / pyrrolic / graphitic / N-oxide. ORR 활성 상관 분석에 자주 쓰이는 구분.",
+   "ref": "nist_srd20",
+   "peaks": [
+    {
+     "label": "pyridinic N",
+     "center": 398.4,
+     "center_tol": 0.3,
+     "fwhm": 1.2,
+     "mix": 30,
+     "area_scale": 1.0
+    },
+    {
+     "label": "pyrrolic N",
+     "center": 400.2,
+     "center_tol": 0.3,
+     "link_fwhm": true,
+     "area_scale": 0.8
+    },
+    {
+     "label": "graphitic N",
+     "center": 401.1,
+     "center_tol": 0.4,
+     "link_fwhm": true,
+     "area_scale": 0.6
+    },
+    {
+     "label": "N-oxide",
+     "center": 405.5,
+     "center_tol": 1.0,
+     "link_fwhm": true,
+     "area_scale": 0.2
+    }
+   ],
+   "description_en": "Standard set for nitrogen-doped carbon catalysts: pyridinic / pyrrolic / graphitic / N-oxide. A breakdown commonly used in correlating ORR activity."
+  },
+  {
+   "id": "s2p_sulfide_sulfate",
+   "name": "S 2p — sulfide + sulfate (doublets)",
+   "element": "S",
+   "orbital": "2p",
+   "doublet": true,
+   "description_ko": "황화물 촉매와 표면 산화(sulfate) 동시 추적. 각 화학종은 1.18 eV / 2:1 doublet으로 자동 전개됨.",
+   "ref": "moulder1992",
+   "peaks": [
+    {
+     "label": "sulfide S2-",
+     "center": 161.8,
+     "center_tol": 0.5,
+     "fwhm": 1.0,
+     "mix": 30,
+     "area_scale": 1.0
+    },
+    {
+     "label": "sulfate SO4",
+     "center": 168.8,
+     "center_tol": 0.6,
+     "link_fwhm": true,
+     "area_scale": 0.3
+    }
+   ],
+   "description_en": "Simultaneous tracking of sulfide catalysts and surface oxidation (sulfate). Each species is automatically expanded into a 1.18 eV / 2:1 doublet."
+  },
+  {
+   "id": "ni2p3_screen",
+   "name": "Ni 2p3/2 — metal / NiO / hydroxide screen",
+   "element": "Ni",
+   "orbital": "2p",
+   "doublet": false,
+   "description_ko": "Ni 2p3/2 영역만 fitting하는 관례적 screening 세트 (2p1/2는 제외). 정밀 정량은 Biesinger 2009의 multiplet envelope 고정비율 사용 권장 - 이 세트는 출발점.",
+   "ref": "biesinger2009ni",
+   "peaks": [
+    {
+     "label": "Ni(0)",
+     "center": 852.6,
+     "center_tol": 0.2,
+     "fwhm": 1.0,
+     "mix": 50,
+     "area_scale": 1.0
+    },
+    {
+     "label": "NiO main",
+     "center": 853.7,
+     "center_tol": 0.3,
+     "fwhm": 1.3,
+     "mix": 30,
+     "area_scale": 0.5
+    },
+    {
+     "label": "NiO/Ni(OH)2 multiplet",
+     "center": 855.5,
+     "center_tol": 0.5,
+     "fwhm": 2.2,
+     "mix": 30,
+     "area_scale": 0.8
+    },
+    {
+     "label": "satellite",
+     "center": 861.0,
+     "center_tol": 1.0,
+     "fwhm": 3.5,
+     "mix": 30,
+     "area_scale": 0.6
+    }
+   ],
+   "description_en": "Conventional screening set fitting only the Ni 2p3/2 region (excluding 2p1/2). For precise quantification, use the fixed-ratio multiplet envelope of Biesinger 2009 - this set is only a starting point."
+  },
+  {
+   "id": "co2p3_screen",
+   "name": "Co 2p3/2 — metal / Co3O4 / Co(II) screen",
+   "element": "Co",
+   "orbital": "2p",
+   "doublet": false,
+   "description_ko": "Co 2p3/2 screening 세트. satellite 강도로 Co(II)/Co(III) 비율 판단: 강한 ~786 satellite = Co(II) 지문.",
+   "ref": "biesinger2011",
+   "peaks": [
+    {
+     "label": "Co(0)",
+     "center": 778.1,
+     "center_tol": 0.2,
+     "fwhm": 1.0,
+     "mix": 50,
+     "area_scale": 1.0
+    },
+    {
+     "label": "Co3O4 / Co(III)",
+     "center": 779.6,
+     "center_tol": 0.4,
+     "fwhm": 1.6,
+     "mix": 30,
+     "area_scale": 0.8
+    },
+    {
+     "label": "Co(II) (CoO/Co(OH)2)",
+     "center": 780.5,
+     "center_tol": 0.6,
+     "fwhm": 2.2,
+     "mix": 30,
+     "area_scale": 0.8
+    },
+    {
+     "label": "Co(II) satellite",
+     "center": 786.4,
+     "center_tol": 1.0,
+     "fwhm": 3.5,
+     "mix": 30,
+     "area_scale": 0.4
+    },
+    {
+     "label": "Co(III) satellite",
+     "center": 789.5,
+     "center_tol": 1.0,
+     "fwhm": 3.0,
+     "mix": 30,
+     "area_scale": 0.15
+    }
+   ],
+   "description_en": "Co 2p3/2 screening set. Judge the Co(II)/Co(III) ratio from satellite intensity: a strong satellite at ~786 is the fingerprint of Co(II)."
+  },
+  {
+   "id": "fe2p3_screen",
+   "name": "Fe 2p3/2 — metal / Fe(II) / Fe(III) screen",
+   "element": "Fe",
+   "orbital": "2p",
+   "doublet": false,
+   "description_ko": "Fe 2p3/2 screening 세트. satellite 위치가 산화수 지문: Fe(II) ~715, Fe(III) ~719 eV. Fe3O4는 두 성분 혼합으로 fitting.",
+   "ref": "biesinger2011",
+   "peaks": [
+    {
+     "label": "Fe(0)",
+     "center": 706.7,
+     "center_tol": 0.2,
+     "fwhm": 0.9,
+     "mix": 50,
+     "area_scale": 1.0
+    },
+    {
+     "label": "Fe(II) oxide",
+     "center": 709.8,
+     "center_tol": 0.5,
+     "fwhm": 2.0,
+     "mix": 30,
+     "area_scale": 0.7
+    },
+    {
+     "label": "Fe(III) oxide",
+     "center": 710.9,
+     "center_tol": 0.5,
+     "fwhm": 2.4,
+     "mix": 30,
+     "area_scale": 0.9
+    },
+    {
+     "label": "Fe(II) satellite",
+     "center": 715.2,
+     "center_tol": 1.0,
+     "fwhm": 3.0,
+     "mix": 30,
+     "area_scale": 0.2
+    },
+    {
+     "label": "Fe(III) satellite",
+     "center": 719.0,
+     "center_tol": 1.0,
+     "fwhm": 3.0,
+     "mix": 30,
+     "area_scale": 0.2
+    }
+   ],
+   "description_en": "Fe 2p3/2 screening set. The satellite position fingerprints the oxidation state: Fe(II) ~715, Fe(III) ~719 eV. Fit Fe3O4 as a mixture of the two components."
+  },
+  {
+   "id": "mn2p3_oxides",
+   "name": "Mn 2p3/2 — MnO / Mn2O3 / MnO2 screen",
+   "element": "Mn",
+   "orbital": "2p",
+   "doublet": false,
+   "description_ko": "Mn 산화물 screening. 산화수 확정은 Mn 3s splitting(MnO 6.0 / Mn2O3 5.4 / MnO2 4.7 eV) 교차 확인 권장.",
+   "ref": "biesinger2011",
+   "peaks": [
+    {
+     "label": "Mn(II)",
+     "center": 640.2,
+     "center_tol": 0.5,
+     "fwhm": 1.8,
+     "mix": 30,
+     "area_scale": 1.0
+    },
+    {
+     "label": "Mn(III)",
+     "center": 641.9,
+     "center_tol": 0.4,
+     "fwhm": 2.2,
+     "mix": 30,
+     "area_scale": 0.8
+    },
+    {
+     "label": "Mn(IV)",
+     "center": 642.4,
+     "center_tol": 0.4,
+     "fwhm": 2.0,
+     "mix": 30,
+     "area_scale": 0.6
+    },
+    {
+     "label": "Mn(II) satellite",
+     "center": 645.5,
+     "center_tol": 1.2,
+     "fwhm": 3.0,
+     "mix": 30,
+     "area_scale": 0.25
+    }
+   ],
+   "description_en": "Mn oxide screening. Confirm the oxidation state by cross-checking the Mn 3s splitting (MnO 6.0 / Mn2O3 5.4 / MnO2 4.7 eV)."
+  },
+  {
+   "id": "cr2p3_screen",
+   "name": "Cr 2p3/2 — metal / Cr(III) / Cr(VI) screen",
+   "element": "Cr",
+   "orbital": "2p",
+   "doublet": false,
+   "description_ko": "Cr(VI)는 multiplet 없는 좁은 단일 피크, Cr(III)는 넓은 multiplet envelope - FWHM 차이가 판별 단서. Cr(VI)는 X선에 환원될 수 있으니 측정시간 의존성 확인.",
+   "ref": "biesinger2011",
+   "peaks": [
+    {
+     "label": "Cr(0)",
+     "center": 574.2,
+     "center_tol": 0.2,
+     "fwhm": 1.0,
+     "mix": 50,
+     "area_scale": 1.0
+    },
+    {
+     "label": "Cr(III) oxide",
+     "center": 576.8,
+     "center_tol": 0.5,
+     "fwhm": 2.6,
+     "mix": 30,
+     "area_scale": 0.9
+    },
+    {
+     "label": "Cr(III) hydroxide",
+     "center": 577.3,
+     "center_tol": 0.5,
+     "fwhm": 2.6,
+     "mix": 30,
+     "area_scale": 0.4
+    },
+    {
+     "label": "Cr(VI)",
+     "center": 579.7,
+     "center_tol": 0.6,
+     "fwhm": 1.4,
+     "mix": 30,
+     "area_scale": 0.3
+    }
+   ],
+   "description_en": "Cr(VI) is a narrow single peak without multiplet structure, while Cr(III) is a broad multiplet envelope - the FWHM difference is the discriminating clue. Cr(VI) may be reduced under X-rays, so check for acquisition-time dependence."
+  },
+  {
+   "id": "cu2p3_screen",
+   "name": "Cu 2p3/2 — Cu(0/I) / Cu(II) + shake-up",
+   "element": "Cu",
+   "orbital": "2p",
+   "doublet": false,
+   "description_ko": "Cu(0)과 Cu(I)은 이 영역에서 구분 불가(둘 다 ~932.5) - Cu LMM Auger로 확정할 것. 940-945 shake-up이 있으면 Cu(II) 존재 확정.",
+   "ref": "biesinger2010",
+   "peaks": [
+    {
+     "label": "Cu(0)/Cu(I)",
+     "center": 932.5,
+     "center_tol": 0.3,
+     "fwhm": 1.1,
+     "mix": 40,
+     "area_scale": 1.0
+    },
+    {
+     "label": "Cu(II)",
+     "center": 933.6,
+     "center_tol": 0.5,
+     "fwhm": 2.2,
+     "mix": 30,
+     "area_scale": 0.5
+    },
+    {
+     "label": "Cu(II) shake-up A",
+     "center": 941.5,
+     "center_tol": 1.2,
+     "fwhm": 3.5,
+     "mix": 30,
+     "area_scale": 0.25
+    },
+    {
+     "label": "Cu(II) shake-up B",
+     "center": 944.0,
+     "center_tol": 1.2,
+     "fwhm": 3.0,
+     "mix": 30,
+     "area_scale": 0.15
+    }
+   ],
+   "description_en": "Cu(0) and Cu(I) cannot be distinguished in this region (both ~932.5) - confirm with the Cu LMM Auger. The presence of a 940-945 shake-up confirms Cu(II)."
+  },
+  {
+   "id": "pt4f_states",
+   "name": "Pt 4f — Pt(0) / Pt(II) / Pt(IV) (doublets)",
+   "element": "Pt",
+   "orbital": "4f",
+   "doublet": true,
+   "description_ko": "각 산화 상태가 3.33 eV / 4:3 doublet으로 자동 전개됨. 금속 Pt는 비대칭 - 정밀 fitting 시 Pt(0)만 GL_TAIL/DONIACH로 교체.",
+   "ref": "nist_srd20",
+   "peaks": [
+    {
+     "label": "Pt(0)",
+     "center": 71.1,
+     "center_tol": 0.2,
+     "fwhm": 1.0,
+     "mix": 50,
+     "area_scale": 1.0
+    },
+    {
+     "label": "Pt(II)",
+     "center": 72.6,
+     "center_tol": 0.4,
+     "link_fwhm": false,
+     "fwhm": 1.4,
+     "mix": 30,
+     "area_scale": 0.4
+    },
+    {
+     "label": "Pt(IV)",
+     "center": 74.8,
+     "center_tol": 0.5,
+     "link_fwhm": false,
+     "fwhm": 1.6,
+     "mix": 30,
+     "area_scale": 0.2
+    }
+   ],
+   "description_en": "Each oxidation state is automatically expanded into a 3.33 eV / 4:3 doublet. Metallic Pt is asymmetric - for precise fitting, replace only Pt(0) with GL_TAIL/DONIACH."
+  },
+  {
+   "id": "mo3d_oxides",
+   "name": "Mo 3d — Mo(IV) / Mo(V) / Mo(VI) (doublets)",
+   "element": "Mo",
+   "orbital": "3d",
+   "doublet": true,
+   "description_ko": "각 산화 상태가 3.15 eV / 3:2 doublet으로 자동 전개. 황화물 시료는 S 2s(~226.2)가 겹치므로 별도 피크로 추가할 것.",
+   "ref": "nist_srd20",
+   "peaks": [
+    {
+     "label": "Mo(IV)",
+     "center": 229.4,
+     "center_tol": 0.5,
+     "fwhm": 1.2,
+     "mix": 30,
+     "area_scale": 1.0
+    },
+    {
+     "label": "Mo(V)",
+     "center": 231.0,
+     "center_tol": 0.5,
+     "link_fwhm": true,
+     "area_scale": 0.4
+    },
+    {
+     "label": "Mo(VI)",
+     "center": 232.6,
+     "center_tol": 0.5,
+     "link_fwhm": true,
+     "area_scale": 0.5
+    }
+   ],
+   "description_en": "Each oxidation state is automatically expanded into a 3.15 eV / 3:2 doublet. In sulfide samples, S 2s (~226.2) overlaps, so add it as a separate peak."
+  }
+ ]
 }

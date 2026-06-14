@@ -1,298 +1,1204 @@
 {
-  "_comment": "Binding energies are for the principal spin-orbit component (2p3/2, 3d5/2, 4f7/2), Al Kalpha, charge-referenced to adventitious C 1s = 284.8 eV. Values are literature starting points - always check the cited source for final assignments. rsf = Scofield photoionization cross-section relative to C 1s (Al Kalpha), as commonly tabulated; prefer instrument-specific RSFs when available.",
-  "references": {
-    "biesinger2011": "M.C. Biesinger et al., Appl. Surf. Sci. 257 (2011) 2717-2730 (Cr, Mn, Fe, Co, Ni)",
-    "biesinger2009ni": "M.C. Biesinger et al., Surf. Interface Anal. 41 (2009) 324-332 (Ni)",
-    "biesinger2010": "M.C. Biesinger et al., Appl. Surf. Sci. 257 (2010) 887-898 (Sc, Ti, V, Cu, Zn)",
-    "moulder1992": "J.F. Moulder et al., Handbook of X-ray Photoelectron Spectroscopy, Perkin-Elmer (1992)",
-    "nist_srd20": "NIST X-ray Photoelectron Spectroscopy Database, SRD 20, https://srdata.nist.gov/xps/",
-    "scofield1976": "J.H. Scofield, J. Electron Spectrosc. Relat. Phenom. 8 (1976) 129-137"
+ "_comment": "Binding energies are for the principal spin-orbit component (2p3/2, 3d5/2, 4f7/2), Al Kalpha, charge-referenced to adventitious C 1s = 284.8 eV. Values are literature starting points - always check the cited source for final assignments. rsf = Scofield photoionization cross-section relative to C 1s (Al Kalpha), as commonly tabulated; prefer instrument-specific RSFs when available.",
+ "references": {
+  "biesinger2011": "M.C. Biesinger et al., Appl. Surf. Sci. 257 (2011) 2717-2730 (Cr, Mn, Fe, Co, Ni)",
+  "biesinger2009ni": "M.C. Biesinger et al., Surf. Interface Anal. 41 (2009) 324-332 (Ni)",
+  "biesinger2010": "M.C. Biesinger et al., Appl. Surf. Sci. 257 (2010) 887-898 (Sc, Ti, V, Cu, Zn)",
+  "moulder1992": "J.F. Moulder et al., Handbook of X-ray Photoelectron Spectroscopy, Perkin-Elmer (1992)",
+  "nist_srd20": "NIST X-ray Photoelectron Spectroscopy Database, SRD 20, https://srdata.nist.gov/xps/",
+  "scofield1976": "J.H. Scofield, J. Electron Spectrosc. Relat. Phenom. 8 (1976) 129-137"
+ },
+ "elements": {
+  "C": {
+   "1s": {
+    "spin_orbit_splitting_eV": null,
+    "doublet_area_ratio": null,
+    "rsf": 1.0,
+    "notes_ko": "대전 보정 기준: adventitious C-C/C-H = 284.8 eV. K 2p3/2(292.9)와 칼륨 시료에서 겹침 주의.",
+    "states": [
+     {
+      "state": "C-C / C-H (adventitious)",
+      "be_eV": 284.8,
+      "range": [
+       284.6,
+       285.0
+      ],
+      "notes_ko": "대부분 시료에 존재. 대전 보정 기준으로 사용",
+      "ref": "biesinger2011",
+      "notes_en": "Present in most samples; used as the charge-referencing standard."
+     },
+     {
+      "state": "C-O-C / C-OH",
+      "be_eV": 286.2,
+      "range": [
+       285.8,
+       286.6
+      ],
+      "ref": "moulder1992"
+     },
+     {
+      "state": "C=O",
+      "be_eV": 287.9,
+      "range": [
+       287.5,
+       288.3
+      ],
+      "ref": "moulder1992"
+     },
+     {
+      "state": "O-C=O (carboxyl/ester)",
+      "be_eV": 288.8,
+      "range": [
+       288.3,
+       289.3
+      ],
+      "ref": "moulder1992"
+     },
+     {
+      "state": "carbonate (CO3 2-)",
+      "be_eV": 289.8,
+      "range": [
+       289.3,
+       290.5
+      ],
+      "ref": "moulder1992"
+     },
+     {
+      "state": "pi-pi* satellite (sp2 carbon)",
+      "be_eV": 291.0,
+      "range": [
+       290.3,
+       291.8
+      ],
+      "notes_ko": "graphitic 탄소의 shake-up. 넓고 약함",
+      "ref": "moulder1992",
+      "notes_en": "Shake-up of graphitic carbon; broad and weak."
+     },
+     {
+      "state": "metal carbide",
+      "be_eV": 283.0,
+      "range": [
+       282.0,
+       283.7
+      ],
+      "ref": "moulder1992"
+     }
+    ],
+    "notes_en": "Charge-referencing standard: adventitious C-C/C-H = 284.8 eV. Beware overlap with K 2p3/2 (292.9) in potassium-containing samples."
+   }
   },
-  "elements": {
-    "C": {
-      "1s": {
-        "spin_orbit_splitting_eV": null, "doublet_area_ratio": null, "rsf": 1.0,
-        "notes_ko": "대전 보정 기준: adventitious C-C/C-H = 284.8 eV. K 2p3/2(292.9)와 칼륨 시료에서 겹침 주의.",
-        "states": [
-          {"state": "C-C / C-H (adventitious)", "be_eV": 284.8, "range": [284.6, 285.0], "notes_ko": "대부분 시료에 존재. 대전 보정 기준으로 사용", "ref": "biesinger2011"},
-          {"state": "C-O-C / C-OH", "be_eV": 286.2, "range": [285.8, 286.6], "ref": "moulder1992"},
-          {"state": "C=O", "be_eV": 287.9, "range": [287.5, 288.3], "ref": "moulder1992"},
-          {"state": "O-C=O (carboxyl/ester)", "be_eV": 288.8, "range": [288.3, 289.3], "ref": "moulder1992"},
-          {"state": "carbonate (CO3 2-)", "be_eV": 289.8, "range": [289.3, 290.5], "ref": "moulder1992"},
-          {"state": "pi-pi* satellite (sp2 carbon)", "be_eV": 291.0, "range": [290.3, 291.8], "notes_ko": "graphitic 탄소의 shake-up. 넓고 약함", "ref": "moulder1992"},
-          {"state": "metal carbide", "be_eV": 283.0, "range": [282.0, 283.7], "ref": "moulder1992"}
-        ]
-      }
-    },
-    "N": {
-      "1s": {
-        "spin_orbit_splitting_eV": null, "doublet_area_ratio": null, "rsf": 1.8,
-        "notes_ko": "N-doped carbon 촉매: pyridinic/pyrrolic/graphitic 구분이 핵심.",
-        "states": [
-          {"state": "metal nitride", "be_eV": 397.0, "range": [396.2, 397.6], "ref": "moulder1992"},
-          {"state": "pyridinic N", "be_eV": 398.4, "range": [398.0, 398.8], "ref": "nist_srd20"},
-          {"state": "amine / NH2", "be_eV": 399.4, "range": [399.0, 399.8], "ref": "moulder1992"},
-          {"state": "pyrrolic N", "be_eV": 400.2, "range": [399.8, 400.6], "ref": "nist_srd20"},
-          {"state": "graphitic (quaternary) N", "be_eV": 401.1, "range": [400.7, 401.7], "ref": "nist_srd20"},
-          {"state": "N-oxide / nitrate", "be_eV": 406.5, "range": [405.0, 408.0], "ref": "moulder1992"}
-        ]
-      }
-    },
-    "O": {
-      "1s": {
-        "spin_orbit_splitting_eV": null, "doublet_area_ratio": null, "rsf": 2.93,
-        "notes_ko": "전이금속 산화물: lattice O / 결함·OH / 흡착수 3성분 fitting이 표준 출발점.",
-        "states": [
-          {"state": "lattice oxide (M-O)", "be_eV": 530.0, "range": [529.0, 530.6], "ref": "biesinger2011"},
-          {"state": "hydroxide / defect oxygen", "be_eV": 531.3, "range": [530.9, 531.9], "notes_ko": "OH-, oxygen vacancy 주변 O, C=O 모두 이 부근 - 과해석 주의", "ref": "biesinger2011"},
-          {"state": "organic C-O / ester O", "be_eV": 532.2, "range": [531.8, 532.8], "ref": "moulder1992"},
-          {"state": "adsorbed H2O", "be_eV": 533.2, "range": [532.7, 534.2], "ref": "moulder1992"}
-        ]
-      }
-    },
-    "F": {
-      "1s": {
-        "spin_orbit_splitting_eV": null, "doublet_area_ratio": null, "rsf": 4.43,
-        "states": [
-          {"state": "metal fluoride", "be_eV": 685.0, "range": [684.3, 685.8], "ref": "moulder1992"},
-          {"state": "C-F (PVDF binder)", "be_eV": 687.8, "range": [687.3, 688.3], "notes_ko": "전극 바인더 PVDF에서 흔함", "ref": "moulder1992"},
-          {"state": "CF2 (PTFE)", "be_eV": 689.0, "range": [688.5, 689.6], "ref": "moulder1992"}
-        ]
-      }
-    },
-    "Al": {
-      "2p": {
-        "spin_orbit_splitting_eV": 0.44, "doublet_area_ratio": "2:1", "rsf": 0.537,
-        "notes_ko": "splitting 0.44 eV는 보통 분해 안 됨 - 단일 피크로 fitting해도 무방. Pt 4f(71-75 eV)와 겹침 주의!",
-        "states": [
-          {"state": "Al(0) metal", "be_eV": 72.8, "range": [72.6, 73.0], "lineshape_hint": "asymmetric", "ref": "moulder1992"},
-          {"state": "Al2O3 / Al(III)", "be_eV": 74.4, "range": [73.9, 74.8], "ref": "moulder1992"}
-        ]
-      }
-    },
-    "Si": {
-      "2p": {
-        "spin_orbit_splitting_eV": 0.63, "doublet_area_ratio": "2:1", "rsf": 0.817,
-        "notes_ko": "고분해능에서만 doublet 분해됨. 산화수별 suboxide 사다리 (Si1+~100.3, Si2+~101.2, Si3+~102.1).",
-        "states": [
-          {"state": "Si(0)", "be_eV": 99.4, "range": [99.2, 99.7], "ref": "moulder1992"},
-          {"state": "SiO2 (Si4+)", "be_eV": 103.4, "range": [103.0, 103.9], "ref": "moulder1992"},
-          {"state": "silicate", "be_eV": 102.5, "range": [101.8, 103.0], "ref": "moulder1992"}
-        ]
-      }
-    },
-    "P": {
-      "2p": {
-        "spin_orbit_splitting_eV": 0.87, "doublet_area_ratio": "2:1", "rsf": 1.19,
-        "states": [
-          {"state": "metal phosphide", "be_eV": 129.5, "range": [128.7, 130.2], "notes_ko": "전이금속 phosphide 촉매(TMP)의 지문", "ref": "nist_srd20"},
-          {"state": "elemental P", "be_eV": 130.2, "range": [129.9, 130.5], "ref": "moulder1992"},
-          {"state": "phosphate (PO4 3-)", "be_eV": 133.5, "range": [132.8, 134.5], "notes_ko": "표면 산화로 phosphide 시료에 거의 항상 동반", "ref": "moulder1992"}
-        ]
-      }
-    },
-    "S": {
-      "2p": {
-        "spin_orbit_splitting_eV": 1.18, "doublet_area_ratio": "2:1", "rsf": 1.68,
-        "notes_ko": "반드시 1.18 eV / 2:1 doublet 쌍으로 fitting. S 2s(~226 eV)는 Mo 3d와 겹침!",
-        "states": [
-          {"state": "metal sulfide (S2-)", "be_eV": 161.8, "range": [160.8, 162.5], "ref": "moulder1992"},
-          {"state": "thiol / C-S", "be_eV": 163.5, "range": [163.0, 164.0], "ref": "moulder1992"},
-          {"state": "elemental S (S8)", "be_eV": 164.0, "range": [163.8, 164.4], "ref": "moulder1992"},
-          {"state": "sulfonate", "be_eV": 167.8, "range": [167.0, 168.3], "ref": "moulder1992"},
-          {"state": "sulfate (SO4 2-)", "be_eV": 168.8, "range": [168.3, 169.6], "notes_ko": "표면 산화 지표. sulfide 촉매 열화 추적에 사용", "ref": "moulder1992"}
-        ]
-      }
-    },
-    "Cl": {
-      "2p": {
-        "spin_orbit_splitting_eV": 1.6, "doublet_area_ratio": "2:1", "rsf": 2.29,
-        "states": [
-          {"state": "metal chloride", "be_eV": 198.5, "range": [198.0, 199.2], "ref": "moulder1992"},
-          {"state": "organic C-Cl", "be_eV": 200.3, "range": [199.8, 200.9], "ref": "moulder1992"},
-          {"state": "perchlorate", "be_eV": 208.5, "range": [207.5, 209.3], "ref": "moulder1992"}
-        ]
-      }
-    },
-    "Ti": {
-      "2p": {
-        "spin_orbit_splitting_eV": 5.7, "doublet_area_ratio": "2:1", "rsf": 7.81,
-        "notes_ko": "TiO2는 매우 좁은 2p3/2 (FWHM ~1.0). 금속 Ti는 비대칭 + 2p1/2가 넓어짐 (Coster-Kronig).",
-        "states": [
-          {"state": "Ti(0) metal", "be_eV": 453.9, "range": [453.7, 454.2], "lineshape_hint": "asymmetric (DS)", "ref": "biesinger2010"},
-          {"state": "TiN", "be_eV": 455.1, "range": [454.8, 455.6], "notes_ko": "shake-up satellite 동반", "ref": "biesinger2010"},
-          {"state": "Ti(II) / TiO", "be_eV": 455.4, "range": [454.9, 455.9], "ref": "biesinger2010"},
-          {"state": "Ti(III) / Ti2O3", "be_eV": 457.2, "range": [456.7, 457.7], "ref": "biesinger2010"},
-          {"state": "Ti(IV) / TiO2", "be_eV": 458.8, "range": [458.5, 459.2], "ref": "biesinger2010"}
-        ]
-      }
-    },
-    "Cr": {
-      "2p": {
-        "spin_orbit_splitting_eV": 9.8, "doublet_area_ratio": "2:1", "rsf": 11.67,
-        "notes_ko": "Cr(III)는 multiplet splitting 필수 (5개 envelope, Biesinger 2011 Table 참조). Cr(VI)는 multiplet 없는 단일 sharp 피크 - 좁은 FWHM이 지문.",
-        "states": [
-          {"state": "Cr(0) metal", "be_eV": 574.2, "range": [574.0, 574.5], "lineshape_hint": "asymmetric", "ref": "biesinger2011"},
-          {"state": "Cr(III) oxide (Cr2O3)", "be_eV": 576.8, "range": [576.3, 577.1], "lineshape_hint": "multiplet envelope", "notes_ko": "단일 피크로 fitting하면 안 됨 - multiplet 구조", "ref": "biesinger2011"},
-          {"state": "Cr(III) hydroxide", "be_eV": 577.3, "range": [577.0, 577.7], "ref": "biesinger2011"},
-          {"state": "Cr(VI)", "be_eV": 579.7, "range": [579.0, 580.4], "notes_ko": "X선 조사로 환원될 수 있음 - 측정 시간 의존성 확인", "ref": "biesinger2011"}
-        ]
-      }
-    },
-    "Mn": {
-      "2p": {
-        "spin_orbit_splitting_eV": 11.7, "doublet_area_ratio": "2:1", "rsf": 13.91,
-        "notes_ko": "산화수 판별에는 Mn 2p보다 Mn 3s exchange splitting이 더 신뢰성 높음: MnO ~6.0, Mn2O3 ~5.4, MnO2 ~4.7 eV.",
-        "states": [
-          {"state": "Mn(0) metal", "be_eV": 638.8, "range": [638.6, 639.1], "lineshape_hint": "asymmetric", "ref": "biesinger2011"},
-          {"state": "Mn(II) / MnO", "be_eV": 640.2, "range": [639.8, 641.0], "lineshape_hint": "multiplet + satellite ~645.5", "notes_ko": "Mn(II)는 ~5-6 eV 위 shake-up satellite가 지문", "ref": "biesinger2011"},
-          {"state": "Mn3O4 (II,III)", "be_eV": 641.4, "range": [641.0, 641.8], "ref": "biesinger2011"},
-          {"state": "Mn(III) / Mn2O3", "be_eV": 641.9, "range": [641.5, 642.2], "lineshape_hint": "multiplet envelope", "ref": "biesinger2011"},
-          {"state": "Mn(IV) / MnO2", "be_eV": 642.4, "range": [642.0, 642.8], "lineshape_hint": "multiplet envelope", "ref": "biesinger2011"}
-        ]
-      }
-    },
-    "Fe": {
-      "2p": {
-        "spin_orbit_splitting_eV": 13.1, "doublet_area_ratio": "2:1", "rsf": 16.42,
-        "notes_ko": "Fe(II) satellite ~715 eV, Fe(III) satellite ~719 eV - satellite 위치가 산화수 지문. Fe3O4는 satellite가 뚜렷하지 않음. Ni 시료에서는 Ni LMM Auger와 겹침 주의.",
-        "states": [
-          {"state": "Fe(0) metal", "be_eV": 706.7, "range": [706.5, 707.0], "lineshape_hint": "asymmetric (DS)", "ref": "biesinger2011"},
-          {"state": "FeS2 (pyrite, low-spin Fe(II))", "be_eV": 707.0, "range": [706.7, 707.4], "notes_ko": "금속과 거의 같은 위치 - S 2p로 교차 확인", "ref": "nist_srd20"},
-          {"state": "Fe(II) oxide", "be_eV": 709.8, "range": [709.3, 710.3], "lineshape_hint": "multiplet + satellite ~715", "ref": "biesinger2011"},
-          {"state": "Fe3O4 (II,III)", "be_eV": 710.6, "range": [710.2, 711.0], "notes_ko": "만족할 만한 fitting에는 Fe(II)+Fe(III) multiplet 조합 필요", "ref": "biesinger2011"},
-          {"state": "Fe(III) oxide (Fe2O3)", "be_eV": 710.8, "range": [710.4, 711.2], "lineshape_hint": "multiplet + satellite ~719", "ref": "biesinger2011"},
-          {"state": "FeOOH", "be_eV": 711.4, "range": [711.0, 711.8], "ref": "biesinger2011"}
-        ]
-      }
-    },
-    "Co": {
-      "2p": {
-        "spin_orbit_splitting_eV": 15.0, "doublet_area_ratio": "2:1", "rsf": 19.16,
-        "notes_ko": "satellite 강도가 산화수 지문: Co(II) high-spin은 ~786 eV 강한 satellite, Co(III)(Co3O4, CoOOH)는 약한 satellite. 2p3/2-2p1/2 간격도 단서 (CoO ~15.5, Co3O4 ~15.0).",
-        "states": [
-          {"state": "Co(0) metal", "be_eV": 778.1, "range": [777.9, 778.4], "lineshape_hint": "asymmetric (DS)", "ref": "biesinger2011"},
-          {"state": "Co3O4 (II,III)", "be_eV": 779.6, "range": [779.3, 780.0], "lineshape_hint": "weak satellite ~789.5", "ref": "biesinger2011"},
-          {"state": "CoO / Co(II)", "be_eV": 780.1, "range": [779.7, 780.6], "lineshape_hint": "strong satellite ~786.4", "ref": "biesinger2011"},
-          {"state": "Co(OH)2", "be_eV": 780.7, "range": [780.3, 781.2], "lineshape_hint": "strong satellite ~786.5", "ref": "biesinger2011"},
-          {"state": "CoOOH", "be_eV": 780.1, "range": [779.8, 780.5], "lineshape_hint": "weak satellite", "ref": "biesinger2011"}
-        ]
-      }
-    },
-    "Ni": {
-      "2p": {
-        "spin_orbit_splitting_eV": 17.3, "doublet_area_ratio": "2:1", "rsf": 22.18,
-        "notes_ko": "Ni 2p는 multiplet + satellite 구조가 심함 - 단순 1피크/산화수 fitting은 부정확 (Biesinger 2009 envelope 권장). 금속 Ni은 852.6 비대칭 + ~856/858.7 plasmon. Fe 함유 시료는 Fe LMM Auger 간섭 주의.",
-        "states": [
-          {"state": "Ni(0) metal", "be_eV": 852.6, "range": [852.4, 852.8], "lineshape_hint": "asymmetric + plasmon 856.3/858.7", "ref": "biesinger2009ni"},
-          {"state": "NiO", "be_eV": 853.7, "range": [853.5, 854.0], "lineshape_hint": "multiplet (주피크 853.7 + 855.4) + satellite 860.9", "notes_ko": "855.4 성분이 더 클 수 있음 - NiO의 정상 구조", "ref": "biesinger2009ni"},
-          {"state": "Ni(OH)2", "be_eV": 855.6, "range": [855.3, 856.0], "lineshape_hint": "multiplet + satellite ~861.5", "ref": "biesinger2009ni"},
-          {"state": "NiOOH", "be_eV": 855.0, "range": [854.6, 855.5], "lineshape_hint": "broad multiplet", "ref": "biesinger2009ni"},
-          {"state": "Ni sulfide", "be_eV": 853.1, "range": [852.7, 853.6], "ref": "nist_srd20"}
-        ]
-      }
-    },
-    "Cu": {
-      "2p": {
-        "spin_orbit_splitting_eV": 19.75, "doublet_area_ratio": "2:1", "rsf": 25.39,
-        "notes_ko": "Cu(0)과 Cu(I)은 2p로 구분 불가 (둘 다 ~932.5) - Cu LMM Auger 필수 (Cu0 KE 918.6, Cu+ 916.8 eV). Cu(II)는 940-945 강한 shake-up satellite가 지문.",
-        "states": [
-          {"state": "Cu(0) metal", "be_eV": 932.6, "range": [932.4, 932.8], "lineshape_hint": "asymmetric", "ref": "biesinger2010"},
-          {"state": "Cu2O / Cu(I)", "be_eV": 932.4, "range": [932.2, 932.7], "notes_ko": "Auger로만 금속과 구분 가능", "ref": "biesinger2010"},
-          {"state": "CuO / Cu(II)", "be_eV": 933.6, "range": [933.2, 934.0], "lineshape_hint": "strong shake-up 940-945", "ref": "biesinger2010"},
-          {"state": "Cu(OH)2", "be_eV": 934.7, "range": [934.3, 935.1], "lineshape_hint": "strong satellite", "ref": "biesinger2010"}
-        ]
-      }
-    },
-    "Zn": {
-      "2p": {
-        "spin_orbit_splitting_eV": 23.1, "doublet_area_ratio": "2:1", "rsf": 28.75,
-        "notes_ko": "Zn(0) 1021.7 vs ZnO 1021.8 - 2p로 구분 불가. Zn LMM Auger 사용 (Zn0 KE ~992.1, ZnO ~988.6) 또는 Auger parameter.",
-        "states": [
-          {"state": "Zn(0) metal", "be_eV": 1021.7, "range": [1021.5, 1021.9], "ref": "biesinger2010"},
-          {"state": "ZnO", "be_eV": 1021.8, "range": [1021.5, 1022.2], "ref": "biesinger2010"},
-          {"state": "Zn(OH)2", "be_eV": 1022.5, "range": [1022.1, 1022.9], "ref": "nist_srd20"}
-        ]
-      }
-    },
-    "Mo": {
-      "3d": {
-        "spin_orbit_splitting_eV": 3.15, "doublet_area_ratio": "3:2", "rsf": 9.5,
-        "notes_ko": "황화물 시료는 S 2s(~226.2 eV)가 Mo 3d 영역에 겹침 - S 2s 피크를 모델에 포함해야 함.",
-        "states": [
-          {"state": "Mo(0) metal", "be_eV": 228.0, "range": [227.7, 228.2], "lineshape_hint": "asymmetric", "ref": "moulder1992"},
-          {"state": "Mo(IV) / MoS2", "be_eV": 229.3, "range": [228.9, 229.7], "ref": "nist_srd20"},
-          {"state": "Mo(IV) / MoO2", "be_eV": 229.4, "range": [229.0, 229.9], "ref": "nist_srd20"},
-          {"state": "Mo(V)", "be_eV": 231.0, "range": [230.5, 231.6], "ref": "nist_srd20"},
-          {"state": "Mo(VI) / MoO3", "be_eV": 232.6, "range": [232.2, 233.0], "ref": "moulder1992"}
-        ]
-      }
-    },
-    "Ru": {
-      "3d": {
-        "spin_orbit_splitting_eV": 4.17, "doublet_area_ratio": "3:2", "rsf": 7.39,
-        "notes_ko": "Ru 3d3/2(~284.3)가 C 1s와 정면으로 겹침! C 함유 시료는 C 1s를 모델에 같이 넣고 fitting하거나 Ru 3p(Ru0 461.2 eV)를 사용. C 1s=284.8 대전 보정도 Ru 존재 시 주의.",
-        "states": [
-          {"state": "Ru(0) metal", "be_eV": 280.1, "range": [279.9, 280.4], "lineshape_hint": "asymmetric (DS)", "ref": "moulder1992"},
-          {"state": "RuO2", "be_eV": 280.7, "range": [280.4, 281.0], "lineshape_hint": "asymmetric + satellite ~282.5", "ref": "nist_srd20"},
-          {"state": "hydrous RuO2 / Ru(III)", "be_eV": 281.4, "range": [281.0, 282.0], "ref": "nist_srd20"}
-        ]
-      }
-    },
-    "Pd": {
-      "3d": {
-        "spin_orbit_splitting_eV": 5.26, "doublet_area_ratio": "3:2", "rsf": 9.48,
-        "states": [
-          {"state": "Pd(0) metal", "be_eV": 335.4, "range": [335.1, 335.7], "lineshape_hint": "asymmetric", "ref": "moulder1992"},
-          {"state": "PdO / Pd(II)", "be_eV": 336.8, "range": [336.3, 337.2], "ref": "nist_srd20"},
-          {"state": "PdCl2", "be_eV": 337.8, "range": [337.4, 338.2], "ref": "moulder1992"},
-          {"state": "PdO2 / Pd(IV)", "be_eV": 338.0, "range": [337.6, 338.5], "ref": "nist_srd20"}
-        ]
-      }
-    },
-    "Ag": {
-      "3d": {
-        "spin_orbit_splitting_eV": 6.0, "doublet_area_ratio": "3:2", "rsf": 10.66,
-        "notes_ko": "은은 산화 시 BE가 오히려 감소하는 예외 (Ag2O 367.7 < Ag0 368.3). 산화수 판별에는 Auger M4N45N45 (Ag0 KE ~358.0) 병용.",
-        "states": [
-          {"state": "Ag(0) metal", "be_eV": 368.3, "range": [368.1, 368.5], "lineshape_hint": "asymmetric", "ref": "moulder1992"},
-          {"state": "Ag2O", "be_eV": 367.7, "range": [367.4, 368.0], "ref": "nist_srd20"},
-          {"state": "AgO", "be_eV": 367.4, "range": [367.1, 367.7], "ref": "nist_srd20"}
-        ]
-      }
-    },
-    "Ir": {
-      "4f": {
-        "spin_orbit_splitting_eV": 2.98, "doublet_area_ratio": "4:3", "rsf": 14.79,
-        "notes_ko": "IrO2는 비대칭 라인섀입 + 위성 구조로 fitting이 까다로움 (OER 촉매 문헌 참조).",
-        "states": [
-          {"state": "Ir(0) metal", "be_eV": 60.9, "range": [60.7, 61.1], "lineshape_hint": "asymmetric (DS)", "ref": "moulder1992"},
-          {"state": "IrO2 / Ir(IV)", "be_eV": 61.7, "range": [61.5, 62.0], "lineshape_hint": "asymmetric", "ref": "nist_srd20"},
-          {"state": "hydrous Ir oxide / Ir(III)", "be_eV": 62.4, "range": [62.0, 62.9], "ref": "nist_srd20"}
-        ]
-      }
-    },
-    "Pt": {
-      "4f": {
-        "spin_orbit_splitting_eV": 3.33, "doublet_area_ratio": "4:3", "rsf": 15.86,
-        "notes_ko": "Al 지지체/알루미나 위 Pt는 Al 2p(72.8-74.6)와 겹침 - Pt 4d 사용 고려.",
-        "states": [
-          {"state": "Pt(0) metal", "be_eV": 71.1, "range": [70.9, 71.3], "lineshape_hint": "asymmetric (DS)", "ref": "moulder1992"},
-          {"state": "Pt(II) / PtO, Pt(OH)2", "be_eV": 72.6, "range": [72.2, 73.0], "ref": "nist_srd20"},
-          {"state": "Pt(IV) / PtO2", "be_eV": 74.8, "range": [74.2, 75.2], "ref": "nist_srd20"}
-        ]
-      }
-    },
-    "Au": {
-      "4f": {
-        "spin_orbit_splitting_eV": 3.67, "doublet_area_ratio": "4:3", "rsf": 17.12,
-        "notes_ko": "Au 4f7/2 = 84.0 eV는 에너지축 캘리브레이션 표준.",
-        "states": [
-          {"state": "Au(0) metal", "be_eV": 84.0, "range": [83.8, 84.2], "lineshape_hint": "asymmetric", "ref": "moulder1992"},
-          {"state": "Au(I)", "be_eV": 85.2, "range": [84.7, 85.7], "ref": "nist_srd20"},
-          {"state": "Au(III)", "be_eV": 87.0, "range": [86.4, 87.6], "ref": "nist_srd20"}
-        ]
-      }
-    }
+  "N": {
+   "1s": {
+    "spin_orbit_splitting_eV": null,
+    "doublet_area_ratio": null,
+    "rsf": 1.8,
+    "notes_ko": "N-doped carbon 촉매: pyridinic/pyrrolic/graphitic 구분이 핵심.",
+    "states": [
+     {
+      "state": "metal nitride",
+      "be_eV": 397.0,
+      "range": [
+       396.2,
+       397.6
+      ],
+      "ref": "moulder1992"
+     },
+     {
+      "state": "pyridinic N",
+      "be_eV": 398.4,
+      "range": [
+       398.0,
+       398.8
+      ],
+      "ref": "nist_srd20"
+     },
+     {
+      "state": "amine / NH2",
+      "be_eV": 399.4,
+      "range": [
+       399.0,
+       399.8
+      ],
+      "ref": "moulder1992"
+     },
+     {
+      "state": "pyrrolic N",
+      "be_eV": 400.2,
+      "range": [
+       399.8,
+       400.6
+      ],
+      "ref": "nist_srd20"
+     },
+     {
+      "state": "graphitic (quaternary) N",
+      "be_eV": 401.1,
+      "range": [
+       400.7,
+       401.7
+      ],
+      "ref": "nist_srd20"
+     },
+     {
+      "state": "N-oxide / nitrate",
+      "be_eV": 406.5,
+      "range": [
+       405.0,
+       408.0
+      ],
+      "ref": "moulder1992"
+     }
+    ],
+    "notes_en": "N-doped carbon catalysts: distinguishing pyridinic/pyrrolic/graphitic N is key."
+   }
+  },
+  "O": {
+   "1s": {
+    "spin_orbit_splitting_eV": null,
+    "doublet_area_ratio": null,
+    "rsf": 2.93,
+    "notes_ko": "전이금속 산화물: lattice O / 결함·OH / 흡착수 3성분 fitting이 표준 출발점.",
+    "states": [
+     {
+      "state": "lattice oxide (M-O)",
+      "be_eV": 530.0,
+      "range": [
+       529.0,
+       530.6
+      ],
+      "ref": "biesinger2011"
+     },
+     {
+      "state": "hydroxide / defect oxygen",
+      "be_eV": 531.3,
+      "range": [
+       530.9,
+       531.9
+      ],
+      "notes_ko": "OH-, oxygen vacancy 주변 O, C=O 모두 이 부근 - 과해석 주의",
+      "ref": "biesinger2011",
+      "notes_en": "OH-, O around oxygen vacancies, and C=O all fall near this position - beware over-interpretation."
+     },
+     {
+      "state": "organic C-O / ester O",
+      "be_eV": 532.2,
+      "range": [
+       531.8,
+       532.8
+      ],
+      "ref": "moulder1992"
+     },
+     {
+      "state": "adsorbed H2O",
+      "be_eV": 533.2,
+      "range": [
+       532.7,
+       534.2
+      ],
+      "ref": "moulder1992"
+     }
+    ],
+    "notes_en": "Transition-metal oxides: three-component fitting of lattice O / defect-OH / adsorbed water is the standard starting point."
+   }
+  },
+  "F": {
+   "1s": {
+    "spin_orbit_splitting_eV": null,
+    "doublet_area_ratio": null,
+    "rsf": 4.43,
+    "states": [
+     {
+      "state": "metal fluoride",
+      "be_eV": 685.0,
+      "range": [
+       684.3,
+       685.8
+      ],
+      "ref": "moulder1992"
+     },
+     {
+      "state": "C-F (PVDF binder)",
+      "be_eV": 687.8,
+      "range": [
+       687.3,
+       688.3
+      ],
+      "notes_ko": "전극 바인더 PVDF에서 흔함",
+      "ref": "moulder1992",
+      "notes_en": "Common in the electrode binder PVDF."
+     },
+     {
+      "state": "CF2 (PTFE)",
+      "be_eV": 689.0,
+      "range": [
+       688.5,
+       689.6
+      ],
+      "ref": "moulder1992"
+     }
+    ]
+   }
+  },
+  "Al": {
+   "2p": {
+    "spin_orbit_splitting_eV": 0.44,
+    "doublet_area_ratio": "2:1",
+    "rsf": 0.537,
+    "notes_ko": "splitting 0.44 eV는 보통 분해 안 됨 - 단일 피크로 fitting해도 무방. Pt 4f(71-75 eV)와 겹침 주의!",
+    "states": [
+     {
+      "state": "Al(0) metal",
+      "be_eV": 72.8,
+      "range": [
+       72.6,
+       73.0
+      ],
+      "lineshape_hint": "asymmetric",
+      "ref": "moulder1992"
+     },
+     {
+      "state": "Al2O3 / Al(III)",
+      "be_eV": 74.4,
+      "range": [
+       73.9,
+       74.8
+      ],
+      "ref": "moulder1992"
+     }
+    ],
+    "notes_en": "The 0.44 eV splitting is usually not resolved - fitting with a single peak is acceptable. Beware overlap with Pt 4f (71-75 eV)!"
+   }
+  },
+  "Si": {
+   "2p": {
+    "spin_orbit_splitting_eV": 0.63,
+    "doublet_area_ratio": "2:1",
+    "rsf": 0.817,
+    "notes_ko": "고분해능에서만 doublet 분해됨. 산화수별 suboxide 사다리 (Si1+~100.3, Si2+~101.2, Si3+~102.1).",
+    "states": [
+     {
+      "state": "Si(0)",
+      "be_eV": 99.4,
+      "range": [
+       99.2,
+       99.7
+      ],
+      "ref": "moulder1992"
+     },
+     {
+      "state": "SiO2 (Si4+)",
+      "be_eV": 103.4,
+      "range": [
+       103.0,
+       103.9
+      ],
+      "ref": "moulder1992"
+     },
+     {
+      "state": "silicate",
+      "be_eV": 102.5,
+      "range": [
+       101.8,
+       103.0
+      ],
+      "ref": "moulder1992"
+     }
+    ],
+    "notes_en": "The doublet is only resolved at high resolution. Suboxide ladder by oxidation state (Si1+ ~100.3, Si2+ ~101.2, Si3+ ~102.1)."
+   }
+  },
+  "P": {
+   "2p": {
+    "spin_orbit_splitting_eV": 0.87,
+    "doublet_area_ratio": "2:1",
+    "rsf": 1.19,
+    "states": [
+     {
+      "state": "metal phosphide",
+      "be_eV": 129.5,
+      "range": [
+       128.7,
+       130.2
+      ],
+      "notes_ko": "전이금속 phosphide 촉매(TMP)의 지문",
+      "ref": "nist_srd20",
+      "notes_en": "Fingerprint of transition-metal phosphide (TMP) catalysts."
+     },
+     {
+      "state": "elemental P",
+      "be_eV": 130.2,
+      "range": [
+       129.9,
+       130.5
+      ],
+      "ref": "moulder1992"
+     },
+     {
+      "state": "phosphate (PO4 3-)",
+      "be_eV": 133.5,
+      "range": [
+       132.8,
+       134.5
+      ],
+      "notes_ko": "표면 산화로 phosphide 시료에 거의 항상 동반",
+      "ref": "moulder1992",
+      "notes_en": "Almost always accompanies phosphide samples due to surface oxidation."
+     }
+    ]
+   }
+  },
+  "S": {
+   "2p": {
+    "spin_orbit_splitting_eV": 1.18,
+    "doublet_area_ratio": "2:1",
+    "rsf": 1.68,
+    "notes_ko": "반드시 1.18 eV / 2:1 doublet 쌍으로 fitting. S 2s(~226 eV)는 Mo 3d와 겹침!",
+    "states": [
+     {
+      "state": "metal sulfide (S2-)",
+      "be_eV": 161.8,
+      "range": [
+       160.8,
+       162.5
+      ],
+      "ref": "moulder1992"
+     },
+     {
+      "state": "thiol / C-S",
+      "be_eV": 163.5,
+      "range": [
+       163.0,
+       164.0
+      ],
+      "ref": "moulder1992"
+     },
+     {
+      "state": "elemental S (S8)",
+      "be_eV": 164.0,
+      "range": [
+       163.8,
+       164.4
+      ],
+      "ref": "moulder1992"
+     },
+     {
+      "state": "sulfonate",
+      "be_eV": 167.8,
+      "range": [
+       167.0,
+       168.3
+      ],
+      "ref": "moulder1992"
+     },
+     {
+      "state": "sulfate (SO4 2-)",
+      "be_eV": 168.8,
+      "range": [
+       168.3,
+       169.6
+      ],
+      "notes_ko": "표면 산화 지표. sulfide 촉매 열화 추적에 사용",
+      "ref": "moulder1992",
+      "notes_en": "Indicator of surface oxidation; used to track degradation of sulfide catalysts."
+     }
+    ],
+    "notes_en": "Always fit as a 1.18 eV / 2:1 doublet pair. S 2s (~226 eV) overlaps with Mo 3d!"
+   }
+  },
+  "Cl": {
+   "2p": {
+    "spin_orbit_splitting_eV": 1.6,
+    "doublet_area_ratio": "2:1",
+    "rsf": 2.29,
+    "states": [
+     {
+      "state": "metal chloride",
+      "be_eV": 198.5,
+      "range": [
+       198.0,
+       199.2
+      ],
+      "ref": "moulder1992"
+     },
+     {
+      "state": "organic C-Cl",
+      "be_eV": 200.3,
+      "range": [
+       199.8,
+       200.9
+      ],
+      "ref": "moulder1992"
+     },
+     {
+      "state": "perchlorate",
+      "be_eV": 208.5,
+      "range": [
+       207.5,
+       209.3
+      ],
+      "ref": "moulder1992"
+     }
+    ]
+   }
+  },
+  "Ti": {
+   "2p": {
+    "spin_orbit_splitting_eV": 5.7,
+    "doublet_area_ratio": "2:1",
+    "rsf": 7.81,
+    "notes_ko": "TiO2는 매우 좁은 2p3/2 (FWHM ~1.0). 금속 Ti는 비대칭 + 2p1/2가 넓어짐 (Coster-Kronig).",
+    "states": [
+     {
+      "state": "Ti(0) metal",
+      "be_eV": 453.9,
+      "range": [
+       453.7,
+       454.2
+      ],
+      "lineshape_hint": "asymmetric (DS)",
+      "ref": "biesinger2010"
+     },
+     {
+      "state": "TiN",
+      "be_eV": 455.1,
+      "range": [
+       454.8,
+       455.6
+      ],
+      "notes_ko": "shake-up satellite 동반",
+      "ref": "biesinger2010",
+      "notes_en": "Accompanied by a shake-up satellite."
+     },
+     {
+      "state": "Ti(II) / TiO",
+      "be_eV": 455.4,
+      "range": [
+       454.9,
+       455.9
+      ],
+      "ref": "biesinger2010"
+     },
+     {
+      "state": "Ti(III) / Ti2O3",
+      "be_eV": 457.2,
+      "range": [
+       456.7,
+       457.7
+      ],
+      "ref": "biesinger2010"
+     },
+     {
+      "state": "Ti(IV) / TiO2",
+      "be_eV": 458.8,
+      "range": [
+       458.5,
+       459.2
+      ],
+      "ref": "biesinger2010"
+     }
+    ],
+    "notes_en": "TiO2 has a very narrow 2p3/2 (FWHM ~1.0). Metallic Ti is asymmetric, with a broadened 2p1/2 (Coster-Kronig)."
+   }
+  },
+  "Cr": {
+   "2p": {
+    "spin_orbit_splitting_eV": 9.8,
+    "doublet_area_ratio": "2:1",
+    "rsf": 11.67,
+    "notes_ko": "Cr(III)는 multiplet splitting 필수 (5개 envelope, Biesinger 2011 Table 참조). Cr(VI)는 multiplet 없는 단일 sharp 피크 - 좁은 FWHM이 지문.",
+    "states": [
+     {
+      "state": "Cr(0) metal",
+      "be_eV": 574.2,
+      "range": [
+       574.0,
+       574.5
+      ],
+      "lineshape_hint": "asymmetric",
+      "ref": "biesinger2011"
+     },
+     {
+      "state": "Cr(III) oxide (Cr2O3)",
+      "be_eV": 576.8,
+      "range": [
+       576.3,
+       577.1
+      ],
+      "lineshape_hint": "multiplet envelope",
+      "notes_ko": "단일 피크로 fitting하면 안 됨 - multiplet 구조",
+      "ref": "biesinger2011",
+      "notes_en": "Should not be fitted with a single peak - it has multiplet structure."
+     },
+     {
+      "state": "Cr(III) hydroxide",
+      "be_eV": 577.3,
+      "range": [
+       577.0,
+       577.7
+      ],
+      "ref": "biesinger2011"
+     },
+     {
+      "state": "Cr(VI)",
+      "be_eV": 579.7,
+      "range": [
+       579.0,
+       580.4
+      ],
+      "notes_ko": "X선 조사로 환원될 수 있음 - 측정 시간 의존성 확인",
+      "ref": "biesinger2011",
+      "notes_en": "May be reduced under X-ray irradiation - check for acquisition-time dependence."
+     }
+    ],
+    "notes_en": "Cr(III) requires multiplet splitting (5-component envelope; see Biesinger 2011 Table). Cr(VI) is a single sharp peak without multiplet structure - the narrow FWHM is its fingerprint."
+   }
+  },
+  "Mn": {
+   "2p": {
+    "spin_orbit_splitting_eV": 11.7,
+    "doublet_area_ratio": "2:1",
+    "rsf": 13.91,
+    "notes_ko": "산화수 판별에는 Mn 2p보다 Mn 3s exchange splitting이 더 신뢰성 높음: MnO ~6.0, Mn2O3 ~5.4, MnO2 ~4.7 eV.",
+    "states": [
+     {
+      "state": "Mn(0) metal",
+      "be_eV": 638.8,
+      "range": [
+       638.6,
+       639.1
+      ],
+      "lineshape_hint": "asymmetric",
+      "ref": "biesinger2011"
+     },
+     {
+      "state": "Mn(II) / MnO",
+      "be_eV": 640.2,
+      "range": [
+       639.8,
+       641.0
+      ],
+      "lineshape_hint": "multiplet + satellite ~645.5",
+      "notes_ko": "Mn(II)는 ~5-6 eV 위 shake-up satellite가 지문",
+      "ref": "biesinger2011",
+      "notes_en": "Mn(II) is fingerprinted by a shake-up satellite ~5-6 eV above the main peak."
+     },
+     {
+      "state": "Mn3O4 (II,III)",
+      "be_eV": 641.4,
+      "range": [
+       641.0,
+       641.8
+      ],
+      "ref": "biesinger2011"
+     },
+     {
+      "state": "Mn(III) / Mn2O3",
+      "be_eV": 641.9,
+      "range": [
+       641.5,
+       642.2
+      ],
+      "lineshape_hint": "multiplet envelope",
+      "ref": "biesinger2011"
+     },
+     {
+      "state": "Mn(IV) / MnO2",
+      "be_eV": 642.4,
+      "range": [
+       642.0,
+       642.8
+      ],
+      "lineshape_hint": "multiplet envelope",
+      "ref": "biesinger2011"
+     }
+    ],
+    "notes_en": "For determining oxidation state, the Mn 3s exchange splitting is more reliable than Mn 2p: MnO ~6.0, Mn2O3 ~5.4, MnO2 ~4.7 eV."
+   }
+  },
+  "Fe": {
+   "2p": {
+    "spin_orbit_splitting_eV": 13.1,
+    "doublet_area_ratio": "2:1",
+    "rsf": 16.42,
+    "notes_ko": "Fe(II) satellite ~715 eV, Fe(III) satellite ~719 eV - satellite 위치가 산화수 지문. Fe3O4는 satellite가 뚜렷하지 않음. Ni 시료에서는 Ni LMM Auger와 겹침 주의.",
+    "states": [
+     {
+      "state": "Fe(0) metal",
+      "be_eV": 706.7,
+      "range": [
+       706.5,
+       707.0
+      ],
+      "lineshape_hint": "asymmetric (DS)",
+      "ref": "biesinger2011"
+     },
+     {
+      "state": "FeS2 (pyrite, low-spin Fe(II))",
+      "be_eV": 707.0,
+      "range": [
+       706.7,
+       707.4
+      ],
+      "notes_ko": "금속과 거의 같은 위치 - S 2p로 교차 확인",
+      "ref": "nist_srd20",
+      "notes_en": "Nearly the same position as the metal - cross-check with S 2p."
+     },
+     {
+      "state": "Fe(II) oxide",
+      "be_eV": 709.8,
+      "range": [
+       709.3,
+       710.3
+      ],
+      "lineshape_hint": "multiplet + satellite ~715",
+      "ref": "biesinger2011"
+     },
+     {
+      "state": "Fe3O4 (II,III)",
+      "be_eV": 710.6,
+      "range": [
+       710.2,
+       711.0
+      ],
+      "notes_ko": "만족할 만한 fitting에는 Fe(II)+Fe(III) multiplet 조합 필요",
+      "ref": "biesinger2011",
+      "notes_en": "A satisfactory fit requires a combination of Fe(II) + Fe(III) multiplets."
+     },
+     {
+      "state": "Fe(III) oxide (Fe2O3)",
+      "be_eV": 710.8,
+      "range": [
+       710.4,
+       711.2
+      ],
+      "lineshape_hint": "multiplet + satellite ~719",
+      "ref": "biesinger2011"
+     },
+     {
+      "state": "FeOOH",
+      "be_eV": 711.4,
+      "range": [
+       711.0,
+       711.8
+      ],
+      "ref": "biesinger2011"
+     }
+    ],
+    "notes_en": "Fe(II) satellite ~715 eV, Fe(III) satellite ~719 eV - the satellite position fingerprints the oxidation state. Fe3O4 shows no distinct satellite. In Ni-containing samples, beware overlap with the Ni LMM Auger."
+   }
+  },
+  "Co": {
+   "2p": {
+    "spin_orbit_splitting_eV": 15.0,
+    "doublet_area_ratio": "2:1",
+    "rsf": 19.16,
+    "notes_ko": "satellite 강도가 산화수 지문: Co(II) high-spin은 ~786 eV 강한 satellite, Co(III)(Co3O4, CoOOH)는 약한 satellite. 2p3/2-2p1/2 간격도 단서 (CoO ~15.5, Co3O4 ~15.0).",
+    "states": [
+     {
+      "state": "Co(0) metal",
+      "be_eV": 778.1,
+      "range": [
+       777.9,
+       778.4
+      ],
+      "lineshape_hint": "asymmetric (DS)",
+      "ref": "biesinger2011"
+     },
+     {
+      "state": "Co3O4 (II,III)",
+      "be_eV": 779.6,
+      "range": [
+       779.3,
+       780.0
+      ],
+      "lineshape_hint": "weak satellite ~789.5",
+      "ref": "biesinger2011"
+     },
+     {
+      "state": "CoO / Co(II)",
+      "be_eV": 780.1,
+      "range": [
+       779.7,
+       780.6
+      ],
+      "lineshape_hint": "strong satellite ~786.4",
+      "ref": "biesinger2011"
+     },
+     {
+      "state": "Co(OH)2",
+      "be_eV": 780.7,
+      "range": [
+       780.3,
+       781.2
+      ],
+      "lineshape_hint": "strong satellite ~786.5",
+      "ref": "biesinger2011"
+     },
+     {
+      "state": "CoOOH",
+      "be_eV": 780.1,
+      "range": [
+       779.8,
+       780.5
+      ],
+      "lineshape_hint": "weak satellite",
+      "ref": "biesinger2011"
+     }
+    ],
+    "notes_en": "Satellite intensity fingerprints the oxidation state: high-spin Co(II) has a strong satellite at ~786 eV, while Co(III) (Co3O4, CoOOH) has a weak satellite. The 2p3/2-2p1/2 spacing is also a clue (CoO ~15.5, Co3O4 ~15.0)."
+   }
+  },
+  "Ni": {
+   "2p": {
+    "spin_orbit_splitting_eV": 17.3,
+    "doublet_area_ratio": "2:1",
+    "rsf": 22.18,
+    "notes_ko": "Ni 2p는 multiplet + satellite 구조가 심함 - 단순 1피크/산화수 fitting은 부정확 (Biesinger 2009 envelope 권장). 금속 Ni은 852.6 비대칭 + ~856/858.7 plasmon. Fe 함유 시료는 Fe LMM Auger 간섭 주의.",
+    "states": [
+     {
+      "state": "Ni(0) metal",
+      "be_eV": 852.6,
+      "range": [
+       852.4,
+       852.8
+      ],
+      "lineshape_hint": "asymmetric + plasmon 856.3/858.7",
+      "ref": "biesinger2009ni"
+     },
+     {
+      "state": "NiO",
+      "be_eV": 853.7,
+      "range": [
+       853.5,
+       854.0
+      ],
+      "lineshape_hint": "multiplet (주피크 853.7 + 855.4) + satellite 860.9",
+      "notes_ko": "855.4 성분이 더 클 수 있음 - NiO의 정상 구조",
+      "ref": "biesinger2009ni",
+      "notes_en": "The 855.4 component may be larger - this is the normal structure of NiO."
+     },
+     {
+      "state": "Ni(OH)2",
+      "be_eV": 855.6,
+      "range": [
+       855.3,
+       856.0
+      ],
+      "lineshape_hint": "multiplet + satellite ~861.5",
+      "ref": "biesinger2009ni"
+     },
+     {
+      "state": "NiOOH",
+      "be_eV": 855.0,
+      "range": [
+       854.6,
+       855.5
+      ],
+      "lineshape_hint": "broad multiplet",
+      "ref": "biesinger2009ni"
+     },
+     {
+      "state": "Ni sulfide",
+      "be_eV": 853.1,
+      "range": [
+       852.7,
+       853.6
+      ],
+      "ref": "nist_srd20"
+     }
+    ],
+    "notes_en": "Ni 2p has pronounced multiplet + satellite structure - simple one-peak-per-oxidation-state fitting is inaccurate (the Biesinger 2009 envelope is recommended). Metallic Ni is asymmetric at 852.6 with ~856/858.7 plasmons. In Fe-containing samples, beware interference from the Fe LMM Auger."
+   }
+  },
+  "Cu": {
+   "2p": {
+    "spin_orbit_splitting_eV": 19.75,
+    "doublet_area_ratio": "2:1",
+    "rsf": 25.39,
+    "notes_ko": "Cu(0)과 Cu(I)은 2p로 구분 불가 (둘 다 ~932.5) - Cu LMM Auger 필수 (Cu0 KE 918.6, Cu+ 916.8 eV). Cu(II)는 940-945 강한 shake-up satellite가 지문.",
+    "states": [
+     {
+      "state": "Cu(0) metal",
+      "be_eV": 932.6,
+      "range": [
+       932.4,
+       932.8
+      ],
+      "lineshape_hint": "asymmetric",
+      "ref": "biesinger2010"
+     },
+     {
+      "state": "Cu2O / Cu(I)",
+      "be_eV": 932.4,
+      "range": [
+       932.2,
+       932.7
+      ],
+      "notes_ko": "Auger로만 금속과 구분 가능",
+      "ref": "biesinger2010",
+      "notes_en": "Can be distinguished from the metal only by the Auger line."
+     },
+     {
+      "state": "CuO / Cu(II)",
+      "be_eV": 933.6,
+      "range": [
+       933.2,
+       934.0
+      ],
+      "lineshape_hint": "strong shake-up 940-945",
+      "ref": "biesinger2010"
+     },
+     {
+      "state": "Cu(OH)2",
+      "be_eV": 934.7,
+      "range": [
+       934.3,
+       935.1
+      ],
+      "lineshape_hint": "strong satellite",
+      "ref": "biesinger2010"
+     }
+    ],
+    "notes_en": "Cu(0) and Cu(I) cannot be distinguished by 2p (both ~932.5) - the Cu LMM Auger is essential (Cu0 KE 918.6, Cu+ 916.8 eV). Cu(II) is fingerprinted by strong shake-up satellites at 940-945."
+   }
+  },
+  "Zn": {
+   "2p": {
+    "spin_orbit_splitting_eV": 23.1,
+    "doublet_area_ratio": "2:1",
+    "rsf": 28.75,
+    "notes_ko": "Zn(0) 1021.7 vs ZnO 1021.8 - 2p로 구분 불가. Zn LMM Auger 사용 (Zn0 KE ~992.1, ZnO ~988.6) 또는 Auger parameter.",
+    "states": [
+     {
+      "state": "Zn(0) metal",
+      "be_eV": 1021.7,
+      "range": [
+       1021.5,
+       1021.9
+      ],
+      "ref": "biesinger2010"
+     },
+     {
+      "state": "ZnO",
+      "be_eV": 1021.8,
+      "range": [
+       1021.5,
+       1022.2
+      ],
+      "ref": "biesinger2010"
+     },
+     {
+      "state": "Zn(OH)2",
+      "be_eV": 1022.5,
+      "range": [
+       1022.1,
+       1022.9
+      ],
+      "ref": "nist_srd20"
+     }
+    ],
+    "notes_en": "Zn(0) 1021.7 vs ZnO 1021.8 - cannot be distinguished by 2p. Use the Zn LMM Auger (Zn0 KE ~992.1, ZnO ~988.6) or the Auger parameter."
+   }
+  },
+  "Mo": {
+   "3d": {
+    "spin_orbit_splitting_eV": 3.15,
+    "doublet_area_ratio": "3:2",
+    "rsf": 9.5,
+    "notes_ko": "황화물 시료는 S 2s(~226.2 eV)가 Mo 3d 영역에 겹침 - S 2s 피크를 모델에 포함해야 함.",
+    "states": [
+     {
+      "state": "Mo(0) metal",
+      "be_eV": 228.0,
+      "range": [
+       227.7,
+       228.2
+      ],
+      "lineshape_hint": "asymmetric",
+      "ref": "moulder1992"
+     },
+     {
+      "state": "Mo(IV) / MoS2",
+      "be_eV": 229.3,
+      "range": [
+       228.9,
+       229.7
+      ],
+      "ref": "nist_srd20"
+     },
+     {
+      "state": "Mo(IV) / MoO2",
+      "be_eV": 229.4,
+      "range": [
+       229.0,
+       229.9
+      ],
+      "ref": "nist_srd20"
+     },
+     {
+      "state": "Mo(V)",
+      "be_eV": 231.0,
+      "range": [
+       230.5,
+       231.6
+      ],
+      "ref": "nist_srd20"
+     },
+     {
+      "state": "Mo(VI) / MoO3",
+      "be_eV": 232.6,
+      "range": [
+       232.2,
+       233.0
+      ],
+      "ref": "moulder1992"
+     }
+    ],
+    "notes_en": "In sulfide samples, S 2s (~226.2 eV) overlaps the Mo 3d region - the S 2s peak must be included in the model."
+   }
+  },
+  "Ru": {
+   "3d": {
+    "spin_orbit_splitting_eV": 4.17,
+    "doublet_area_ratio": "3:2",
+    "rsf": 7.39,
+    "notes_ko": "Ru 3d3/2(~284.3)가 C 1s와 정면으로 겹침! C 함유 시료는 C 1s를 모델에 같이 넣고 fitting하거나 Ru 3p(Ru0 461.2 eV)를 사용. C 1s=284.8 대전 보정도 Ru 존재 시 주의.",
+    "states": [
+     {
+      "state": "Ru(0) metal",
+      "be_eV": 280.1,
+      "range": [
+       279.9,
+       280.4
+      ],
+      "lineshape_hint": "asymmetric (DS)",
+      "ref": "moulder1992"
+     },
+     {
+      "state": "RuO2",
+      "be_eV": 280.7,
+      "range": [
+       280.4,
+       281.0
+      ],
+      "lineshape_hint": "asymmetric + satellite ~282.5",
+      "ref": "nist_srd20"
+     },
+     {
+      "state": "hydrous RuO2 / Ru(III)",
+      "be_eV": 281.4,
+      "range": [
+       281.0,
+       282.0
+      ],
+      "ref": "nist_srd20"
+     }
+    ],
+    "notes_en": "Ru 3d3/2 (~284.3) overlaps directly with C 1s! For carbon-containing samples, include C 1s in the fitting model or use Ru 3p (Ru0 461.2 eV). Also use caution with C 1s = 284.8 charge referencing when Ru is present."
+   }
+  },
+  "Pd": {
+   "3d": {
+    "spin_orbit_splitting_eV": 5.26,
+    "doublet_area_ratio": "3:2",
+    "rsf": 9.48,
+    "states": [
+     {
+      "state": "Pd(0) metal",
+      "be_eV": 335.4,
+      "range": [
+       335.1,
+       335.7
+      ],
+      "lineshape_hint": "asymmetric",
+      "ref": "moulder1992"
+     },
+     {
+      "state": "PdO / Pd(II)",
+      "be_eV": 336.8,
+      "range": [
+       336.3,
+       337.2
+      ],
+      "ref": "nist_srd20"
+     },
+     {
+      "state": "PdCl2",
+      "be_eV": 337.8,
+      "range": [
+       337.4,
+       338.2
+      ],
+      "ref": "moulder1992"
+     },
+     {
+      "state": "PdO2 / Pd(IV)",
+      "be_eV": 338.0,
+      "range": [
+       337.6,
+       338.5
+      ],
+      "ref": "nist_srd20"
+     }
+    ]
+   }
+  },
+  "Ag": {
+   "3d": {
+    "spin_orbit_splitting_eV": 6.0,
+    "doublet_area_ratio": "3:2",
+    "rsf": 10.66,
+    "notes_ko": "은은 산화 시 BE가 오히려 감소하는 예외 (Ag2O 367.7 < Ag0 368.3). 산화수 판별에는 Auger M4N45N45 (Ag0 KE ~358.0) 병용.",
+    "states": [
+     {
+      "state": "Ag(0) metal",
+      "be_eV": 368.3,
+      "range": [
+       368.1,
+       368.5
+      ],
+      "lineshape_hint": "asymmetric",
+      "ref": "moulder1992"
+     },
+     {
+      "state": "Ag2O",
+      "be_eV": 367.7,
+      "range": [
+       367.4,
+       368.0
+      ],
+      "ref": "nist_srd20"
+     },
+     {
+      "state": "AgO",
+      "be_eV": 367.4,
+      "range": [
+       367.1,
+       367.7
+      ],
+      "ref": "nist_srd20"
+     }
+    ],
+    "notes_en": "Silver is an exception in that its BE decreases upon oxidation (Ag2O 367.7 < Ag0 368.3). For oxidation-state determination, also use the M4N45N45 Auger line (Ag0 KE ~358.0)."
+   }
+  },
+  "Ir": {
+   "4f": {
+    "spin_orbit_splitting_eV": 2.98,
+    "doublet_area_ratio": "4:3",
+    "rsf": 14.79,
+    "notes_ko": "IrO2는 비대칭 라인섀입 + 위성 구조로 fitting이 까다로움 (OER 촉매 문헌 참조).",
+    "states": [
+     {
+      "state": "Ir(0) metal",
+      "be_eV": 60.9,
+      "range": [
+       60.7,
+       61.1
+      ],
+      "lineshape_hint": "asymmetric (DS)",
+      "ref": "moulder1992"
+     },
+     {
+      "state": "IrO2 / Ir(IV)",
+      "be_eV": 61.7,
+      "range": [
+       61.5,
+       62.0
+      ],
+      "lineshape_hint": "asymmetric",
+      "ref": "nist_srd20"
+     },
+     {
+      "state": "hydrous Ir oxide / Ir(III)",
+      "be_eV": 62.4,
+      "range": [
+       62.0,
+       62.9
+      ],
+      "ref": "nist_srd20"
+     }
+    ],
+    "notes_en": "IrO2 is difficult to fit due to its asymmetric lineshape and satellite structure (see OER catalyst literature)."
+   }
+  },
+  "Pt": {
+   "4f": {
+    "spin_orbit_splitting_eV": 3.33,
+    "doublet_area_ratio": "4:3",
+    "rsf": 15.86,
+    "notes_ko": "Al 지지체/알루미나 위 Pt는 Al 2p(72.8-74.6)와 겹침 - Pt 4d 사용 고려.",
+    "states": [
+     {
+      "state": "Pt(0) metal",
+      "be_eV": 71.1,
+      "range": [
+       70.9,
+       71.3
+      ],
+      "lineshape_hint": "asymmetric (DS)",
+      "ref": "moulder1992"
+     },
+     {
+      "state": "Pt(II) / PtO, Pt(OH)2",
+      "be_eV": 72.6,
+      "range": [
+       72.2,
+       73.0
+      ],
+      "ref": "nist_srd20"
+     },
+     {
+      "state": "Pt(IV) / PtO2",
+      "be_eV": 74.8,
+      "range": [
+       74.2,
+       75.2
+      ],
+      "ref": "nist_srd20"
+     }
+    ],
+    "notes_en": "Pt on an Al support/alumina overlaps with Al 2p (72.8-74.6) - consider using Pt 4d."
+   }
+  },
+  "Au": {
+   "4f": {
+    "spin_orbit_splitting_eV": 3.67,
+    "doublet_area_ratio": "4:3",
+    "rsf": 17.12,
+    "notes_ko": "Au 4f7/2 = 84.0 eV는 에너지축 캘리브레이션 표준.",
+    "states": [
+     {
+      "state": "Au(0) metal",
+      "be_eV": 84.0,
+      "range": [
+       83.8,
+       84.2
+      ],
+      "lineshape_hint": "asymmetric",
+      "ref": "moulder1992"
+     },
+     {
+      "state": "Au(I)",
+      "be_eV": 85.2,
+      "range": [
+       84.7,
+       85.7
+      ],
+      "ref": "nist_srd20"
+     },
+     {
+      "state": "Au(III)",
+      "be_eV": 87.0,
+      "range": [
+       86.4,
+       87.6
+      ],
+      "ref": "nist_srd20"
+     }
+    ],
+    "notes_en": "Au 4f7/2 = 84.0 eV is the standard for energy-axis calibration."
+   }
   }
+ }
 }

@@ -11,9 +11,16 @@ from PySide6.QtWidgets import (
 )
 
 from .. import refdb
-from .i18n import t
+from .i18n import current_language, t
 from ..core.spectrum import Peak
 from ..refdb import guess_element_orbital  # re-export (quantify_panel imports from here)
+
+
+def _note(d: dict) -> str:
+    """Localized note: English if the UI is English and a note_en exists, else Korean."""
+    if current_language() == "en" and d.get("notes_en"):
+        return d["notes_en"]
+    return d.get("notes_ko", "")
 
 
 class RefDbPanel(QWidget):
@@ -182,25 +189,26 @@ class RefDbPanel(QWidget):
             parts.append(f"splitting {split} eV · ratio {ratio}")
         if rsf:
             parts.append(f"RSF {rsf}")
-        note = info.get("notes_ko", "")
+        note = _note(info)
         self.info.setText(" · ".join(parts) + (f"\n⚠ {note}" if note else ""))
         query = self.search.text().strip().lower()
         self.tree.clear()
         for st in info["states"]:
-            text = f"{st['state']} {st.get('notes_ko', '')}".lower()
+            text = f"{st['state']} {_note(st)}".lower()
             if query and query not in text:
                 continue
             display = ("★ " if st.get("user") else "") + st["state"]
             item = QTreeWidgetItem([display, f"{st['be_eV']:.1f}"])
             tip = []
             if st.get("user"):
-                tip.append("★ 사용자 항목 (~/.xpsfit/user_refdb.json)")
+                tip.append(t("★ user entry (~/.xpsfit/user_refdb.json)", "★ 사용자 항목 (~/.xpsfit/user_refdb.json)"))
             if "range" in st:
-                tip.append(f"문헌 범위: {st['range'][0]}–{st['range'][1]} eV")
+                tip.append(t(f"Literature range: {st['range'][0]}–{st['range'][1]} eV",
+                             f"문헌 범위: {st['range'][0]}–{st['range'][1]} eV"))
             if st.get("lineshape_hint"):
-                tip.append(f"라인섀입: {st['lineshape_hint']}")
-            if st.get("notes_ko"):
-                tip.append(st["notes_ko"])
+                tip.append(t(f"Lineshape: {st['lineshape_hint']}", f"라인섀입: {st['lineshape_hint']}"))
+            if _note(st):
+                tip.append(_note(st))
             tip.append(refdb.reference_text(st["ref"]))
             item.setToolTip(0, "\n".join(tip))
             item.setToolTip(1, "\n".join(tip))
@@ -286,8 +294,9 @@ class RefDbPanel(QWidget):
     def _recipe_info(self) -> None:
         r = self.recipe_combo.currentData()
         if r:
-            self.recipe_info.setText(
-                f"{r.get('description_ko', '')}\n출처: {refdb.reference_text(r['ref'])}")
+            desc = (r.get("description_en") if current_language() == "en" and r.get("description_en")
+                    else r.get("description_ko", ""))
+            self.recipe_info.setText(f"{desc}\n{t('Source', '출처')}: {refdb.reference_text(r['ref'])}")
 
     def _insert_recipe(self) -> None:
         r = self.recipe_combo.currentData()

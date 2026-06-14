@@ -1,16 +1,28 @@
-"""Context-sensitive Korean help panel rendering the explanation markdown."""
+"""Context-sensitive help panel rendering the explanation markdown.
+
+Explanations exist in Korean (explanations/*.md) and English (explanations/en/*.md);
+the active UI language picks which to show, falling back to Korean if an English
+file is missing.
+"""
 from __future__ import annotations
 
 from pathlib import Path
 
 from PySide6.QtWidgets import QComboBox, QTextBrowser, QVBoxLayout, QWidget
 
-from .i18n import t
+from .i18n import current_language, t
 
 _DIR = Path(__file__).parent.parent / "refdb" / "explanations"
 
-# Explanation bodies are in Korean; English users get English topic titles here
-# and full English guides on the website (contact993.github.io/corepeak).
+
+def _resolve(fname: str) -> Path:
+    if current_language() == "en":
+        en = _DIR / "en" / fname
+        if en.exists():
+            return en
+    return _DIR / fname
+
+
 TOPICS = [
     (t("Backgrounds — Shirley/Tougaard/Linear", "백그라운드 — Shirley/Tougaard/Linear"), "backgrounds.md"),
     (t("Lineshapes — GL mix / asymmetry", "라인섀입 — GL 믹스·비대칭"), "lineshapes.md"),
@@ -50,7 +62,7 @@ class HelpPanel(QWidget):
 
     def _load_current(self) -> None:
         fname = self.topic_combo.currentData()
-        path = _DIR / fname
+        path = _resolve(fname)
         if path.exists():
             self.browser.setMarkdown(path.read_text(encoding="utf-8"))
         else:
