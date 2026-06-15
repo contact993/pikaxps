@@ -1,9 +1,9 @@
-# Corepeak
+# PikaXPS
 
 **Free, cross-platform XPS peak-fitting for macOS & Windows — with a built-in fit auditor and a
 citation-backed reference database. The modern replacement for XPSPEAK 4.1.**
 
-Corepeak reproduces the familiar XPSPEAK workflow with a modern interface, then goes further:
+PikaXPS reproduces the familiar XPSPEAK workflow with a modern interface, then goes further:
 it doesn't just let you fit X-ray photoelectron spectroscopy data — it **checks whether your fit
 is physically and statistically defensible**, and it knows the literature binding energies so you
 don't have to look them up.
@@ -13,9 +13,9 @@ don't have to look them up.
 > Free and open source (GPLv3). Academic use is free forever. No account, no limits, no ads on the
 > download — and no 5,000-point / 51-peak ceiling like XPSPEAK.
 
-## Why Corepeak
+## Why PikaXPS
 
-| | Corepeak | XPSPEAK 4.1 | CasaXPS | KherveFitting / LG4X |
+| | PikaXPS | XPSPEAK 4.1 | CasaXPS | KherveFitting / LG4X |
 |---|---|---|---|---|
 | Price | **Free (OSS)** | Free | €830+ (academic) | Free (OSS) |
 | macOS native | **✅** | ❌ (Windows only) | ❌ (emulation) | ✅ |
@@ -51,10 +51,10 @@ don't have to look them up.
 
 ## Install
 
-Download the latest signed build from the [Releases](https://github.com/contact993/corepeak/releases)
+Download the latest signed build from the [Releases](https://github.com/contact993/pikaxps/releases)
 page:
-- **macOS** — unzip, move `Corepeak.app` to Applications, first launch via right-click → Open.
-- **Windows** — unzip, run `Corepeak.exe` from the extracted folder ("More info → Run anyway" on
+- **macOS** — unzip, move `PikaXPS.app` to Applications, first launch via right-click → Open.
+- **Windows** — unzip, run `PikaXPS.exe` from the extracted folder ("More info → Run anyway" on
   the first SmartScreen prompt).
 
 No Python install required.
@@ -62,7 +62,7 @@ No Python install required.
 ### Run from source
 
 ```bash
-git clone https://github.com/contact993/corepeak && cd xpsfit
+git clone https://github.com/contact993/pikaxps && cd xpsfit
 python -m venv .venv && . .venv/bin/activate
 pip install -e .
 python -m xpsfit.app
@@ -71,15 +71,15 @@ python -m xpsfit.app
 ## Feedback, feature requests & contributing references
 
 This tool grows from its users:
-- **Bug / feature** — open an [issue](https://github.com/contact993/corepeak/issues/new/choose).
-- **Questions & feature voting** — the [Discussions](https://github.com/contact993/corepeak/discussions) board.
+- **Bug / feature** — open an [issue](https://github.com/contact993/pikaxps/issues/new/choose).
+- **Questions & feature voting** — the [Discussions](https://github.com/contact993/pikaxps/discussions) board.
 - **📚 Contribute a reference value** — use the *Submit a reference value* issue template (a
   literature source is required). Accepted submissions ship in the next release with credit, so the
   database keeps getting richer.
 
 ## How to cite
 
-If Corepeak helped your work, please cite it (see [CITATION.cff](CITATION.cff)). A software paper
+If PikaXPS helped your work, please cite it (see [CITATION.cff](CITATION.cff)). A software paper
 with a DOI is in preparation; until then, cite the repository and release version.
 
 ## License

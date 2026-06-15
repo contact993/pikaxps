@@ -13,7 +13,7 @@ LANGUAGES = {"en": "English", "ko": "한국어"}
 
 
 def _settings() -> QSettings:
-    return QSettings("xpsfit", "Corepeak")
+    return QSettings("xpsfit", "PikaXPS")
 
 
 def current_language() -> str:

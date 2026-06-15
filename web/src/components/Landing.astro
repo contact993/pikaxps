@@ -1,14 +1,14 @@
 ---
-// Corepeak dark "instrument-panel" landing — faithful port of Corepeak.dc.html.
+// PikaXPS dark "instrument-panel" landing — faithful port of PikaXPS.dc.html.
 // Self-contained full page (own nav + footer), rendered outside Starlight chrome.
 // One component, two locales: pass lang="en" | "ko".
 interface Props { lang?: 'en' | 'ko' }
 const { lang = 'en' } = Astro.props;
 
-const RAW_BASE = import.meta.env.BASE_URL;             // '/corepeak' (no trailing slash here)
-const BASE = RAW_BASE.endsWith('/') ? RAW_BASE : `${RAW_BASE}/`;  // '/corepeak/'
+const RAW_BASE = import.meta.env.BASE_URL;             // '/pikaxps' (no trailing slash here)
+const BASE = RAW_BASE.endsWith('/') ? RAW_BASE : `${RAW_BASE}/`;  // '/pikaxps/'
 const docBase = lang === 'ko' ? `${BASE}ko/` : BASE;
-const GH = 'https://github.com/contact993/corepeak';
+const GH = 'https://github.com/contact993/pikaxps';
 const DL = `${docBase}download/`;
 const FEAT = `${docBase}features/`;
 const GUIDE = `${BASE}guides/fit-audit/`;              // guides are English-only
@@ -19,7 +19,7 @@ const CITE = `${docBase}cite/`;
 
 const dict = {
   en: {
-    htmlTitle: 'Corepeak — free XPS peak fitting for Mac & Windows',
+    htmlTitle: 'PikaXPS — free XPS peak fitting for Mac & Windows',
     metaDesc:
       'Free, cross-platform XPS peak-fitting app with a built-in fit auditor and a citation-backed reference database. The modern replacement for XPSPEAK 4.1.',
     navFeatures: 'Features', navAuditor: 'Fit auditor', navCompare: 'Compare', navGuides: 'Guides',
@@ -30,7 +30,7 @@ const dict = {
       'A free, cross-platform XPS peak-fitting app with a built-in <span style="color:#E9EEF6;font-weight:500">fit auditor</span> and a citation-backed reference database. The modern replacement for XPSPEAK&nbsp;4.1.',
     heroDownload: 'Download free', heroGithub: 'View on GitHub',
     heroNote: 'No account · no peak limits · GPLv3',
-    shotAlt: 'Corepeak fitting a real Ni 2p XPS spectrum — Regions panel, reference database, peak table and the fit auditor',
+    shotAlt: 'PikaXPS fitting a real Ni 2p XPS spectrum — Regions panel, reference database, peak table and the fit auditor',
     legEnvelope: 'Envelope', legBackground: 'Background', legComponents: 'Components',
     axisX: 'Binding energy (eV)', axisY: 'Counts (a.u.)', residual: 'Δ residual',
     peakTable: 'Peak table', componentsN: '6 components',
@@ -51,7 +51,7 @@ const dict = {
     card4H: 'Imports everything',
     card4P: '.dat / .csv / .xlsx / .xls, Thermo Avantage multi-sheet, VAMAS, or paste two columns from Excel. KE→BE conversion built in.',
     audEyebrow: 'FIT AUDIT', audH2A: 'Is your fit', audH2B: 'defensible?',
-    audP: 'A flat residual isn\'t enough. Corepeak\'s auditor runs the checks a careful reviewer would — and a statistical <span style="color:#E9EEF6;font-weight:500">leave-one-out test</span> that catches the "I added a peak and nothing changed" trap.',
+    audP: 'A flat residual isn\'t enough. PikaXPS\'s auditor runs the checks a careful reviewer would — and a statistical <span style="color:#E9EEF6;font-weight:500">leave-one-out test</span> that catches the "I added a peak and nothing changed" trap.',
     audCta: 'See how it works',
     stat1L: 'audit checks', stat2L: 'elements in DB', stat3L: 'forever',
     repTitle: 'Audit report', repBadge: 'REVIEW · 7/8 pass',
@@ -63,26 +63,26 @@ const dict = {
     rep6: 'Leave-one-out test',
     rep6d: "Peak 4 (861.0 eV): removing it changes BIC by −1.2. The data doesn't require this peak.",
     cmpEyebrow: 'THE MODERN XPSPEAK REPLACEMENT', cmpH2: 'An honest comparison',
-    cmpSub: 'Corepeak is the free, Mac-friendly, validation-focused option.',
+    cmpSub: 'PikaXPS is the free, Mac-friendly, validation-focused option.',
     cmpPrice: 'Price', cmpFreeOss: 'Free (OSS)', cmpFree: 'Free',
     cmpMac: 'macOS native', cmpAuditor: 'Built-in fit auditor',
     cmpDB: 'Citation-backed reference DB', cmpPartial: 'partial',
     cmpRecipes: 'One-click recipes', cmpMaintained: 'Actively maintained', cmpSince: '✕ since 1999',
     fmtTitle: 'Works with your data', fmtSub: 'Import anything, paste from Excel',
-    ctaH2: 'Download Corepeak — free',
+    ctaH2: 'Download PikaXPS — free',
     ctaP: 'Built by a researcher, for researchers. No account, no peak limits, no catch.',
     ctaMac: 'Download for macOS', ctaWin: 'Download for Windows',
     ctaNote: 'GPLv3 · cite-friendly · ', ctaNoteLink: 'see all features →',
-    ctaSupport: 'Free for research — if Corepeak helps your work, please',
-    ctaStar: '⭐ Star on GitHub', ctaCite: '📑 Cite Corepeak',
+    ctaSupport: 'Free for research — if PikaXPS helps your work, please',
+    ctaStar: '⭐ Star on GitHub', ctaCite: '📑 Cite PikaXPS',
     footTagline: 'Free, cross-platform XPS peak-fitting with a built-in fit auditor. The modern replacement for XPSPEAK 4.1.',
     footProduct: 'PRODUCT', footFeatures: 'Features', footDownload: 'Download', footGuide: 'Fit-audit guide',
-    footProject: 'PROJECT', footDiscussions: 'Discussions', footLicense: 'License · GPLv3', footCite: 'Cite Corepeak',
+    footProject: 'PROJECT', footDiscussions: 'Discussions', footLicense: 'License · GPLv3', footCite: 'Cite PikaXPS',
     footCompare: 'COMPARE', footVsXps: 'vs XPSPEAK 4.1', footVsCasa: 'vs CasaXPS', footAuditor: 'The fit auditor',
-    footCopyright: '© 2026 Corepeak · GPLv3', footComments: 'Comments powered by GitHub Discussions',
+    footCopyright: '© 2026 PikaXPS · GPLv3', footComments: 'Comments powered by GitHub Discussions',
   },
   ko: {
-    htmlTitle: 'Corepeak — Mac·Windows용 무료 XPS 피크 피팅',
+    htmlTitle: 'PikaXPS — Mac·Windows용 무료 XPS 피크 피팅',
     metaDesc:
       '내장 핏 오디터와 인용 기반 레퍼런스 DB를 갖춘 무료·크로스플랫폼 XPS 피크 피팅 앱. XPSPEAK 4.1의 현대적 대체재.',
     navFeatures: '기능', navAuditor: '핏 오디터', navCompare: '비교', navGuides: '가이드',
@@ -93,7 +93,7 @@ const dict = {
       '내장 <span style="color:#E9EEF6;font-weight:500">핏 오디터</span>와 인용 기반 레퍼런스 DB를 갖춘 무료·크로스플랫폼 XPS 피크 피팅 앱. XPSPEAK&nbsp;4.1의 현대적 대체재.',
     heroDownload: '무료 다운로드', heroGithub: 'GitHub에서 보기',
     heroNote: '계정 불필요 · 피크 개수 제한 없음 · GPLv3',
-    shotAlt: '실제 Ni 2p XPS 스펙트럼을 피팅 중인 Corepeak — Regions 패널, 레퍼런스 DB, 피크 표, 핏 오디터',
+    shotAlt: '실제 Ni 2p XPS 스펙트럼을 피팅 중인 PikaXPS — Regions 패널, 레퍼런스 DB, 피크 표, 핏 오디터',
     legEnvelope: '엔벨로프', legBackground: '백그라운드', legComponents: '성분',
     axisX: '결합 에너지 (eV)', axisY: '강도 (a.u.)', residual: 'Δ 잔차',
     peakTable: '피크 표', componentsN: '성분 6개',
@@ -114,7 +114,7 @@ const dict = {
     card4H: '모든 포맷 가져오기',
     card4P: '.dat / .csv / .xlsx / .xls, Thermo Avantage 멀티시트, VAMAS, 또는 Excel에서 두 열 붙여넣기. KE→BE 변환 내장.',
     audEyebrow: '핏 오디트', audH2A: '당신의 핏은', audH2B: '방어 가능한가요?',
-    audP: '평평한 잔차만으론 부족합니다. Corepeak의 오디터는 꼼꼼한 리뷰어가 할 검증을 수행하고 — "피크를 추가해도 아무것도 안 바뀌는" 함정을 잡는 통계적 <span style="color:#E9EEF6;font-weight:500">leave-one-out 검정</span>까지 실행합니다.',
+    audP: '평평한 잔차만으론 부족합니다. PikaXPS의 오디터는 꼼꼼한 리뷰어가 할 검증을 수행하고 — "피크를 추가해도 아무것도 안 바뀌는" 함정을 잡는 통계적 <span style="color:#E9EEF6;font-weight:500">leave-one-out 검정</span>까지 실행합니다.',
     audCta: '작동 방식 보기',
     stat1L: '오디트 체크', stat2L: 'DB 원소 수', stat3L: '영구',
     repTitle: '오디트 리포트', repBadge: '검토 · 7/8 통과',
@@ -126,23 +126,23 @@ const dict = {
     rep6: 'Leave-one-out 검정',
     rep6d: '피크 4 (861.0 eV): 제거 시 BIC가 −1.2만큼 변합니다. 데이터가 이 피크를 요구하지 않습니다.',
     cmpEyebrow: '현대적 XPSPEAK 대체재', cmpH2: '솔직한 비교',
-    cmpSub: 'Corepeak은 무료·Mac 친화적·검증 중심의 선택지입니다.',
+    cmpSub: 'PikaXPS는 무료·Mac 친화적·검증 중심의 선택지입니다.',
     cmpPrice: '가격', cmpFreeOss: '무료 (OSS)', cmpFree: '무료',
     cmpMac: 'macOS 네이티브', cmpAuditor: '내장 핏 오디터',
     cmpDB: '인용 기반 레퍼런스 DB', cmpPartial: '부분',
     cmpRecipes: '원클릭 레시피', cmpMaintained: '활발히 유지보수', cmpSince: '✕ 1999년 이후',
     fmtTitle: '당신의 데이터와 호환', fmtSub: '무엇이든 가져오고, Excel에서 붙여넣기',
-    ctaH2: 'Corepeak 다운로드 — 무료',
+    ctaH2: 'PikaXPS 다운로드 — 무료',
     ctaP: '연구자가 연구자를 위해 만들었습니다. 계정·피크 제한·함정 없음.',
     ctaMac: 'macOS용 다운로드', ctaWin: 'Windows용 다운로드',
     ctaNote: 'GPLv3 · 인용 친화적 · ', ctaNoteLink: '전체 기능 보기 →',
-    ctaSupport: '연구용 무료 도구입니다 — Corepeak이 도움이 됐다면',
-    ctaStar: '⭐ GitHub Star', ctaCite: '📑 Corepeak 인용',
+    ctaSupport: '연구용 무료 도구입니다 — PikaXPS가 도움이 됐다면',
+    ctaStar: '⭐ GitHub Star', ctaCite: '📑 PikaXPS 인용',
     footTagline: '내장 핏 오디터를 갖춘 무료·크로스플랫폼 XPS 피크 피팅. XPSPEAK 4.1의 현대적 대체재.',
     footProduct: '제품', footFeatures: '기능', footDownload: '다운로드', footGuide: '핏 오디트 가이드',
-    footProject: '프로젝트', footDiscussions: '디스커션', footLicense: '라이선스 · GPLv3', footCite: 'Corepeak 인용',
+    footProject: '프로젝트', footDiscussions: '디스커션', footLicense: '라이선스 · GPLv3', footCite: 'PikaXPS 인용',
     footCompare: '비교', footVsXps: 'vs XPSPEAK 4.1', footVsCasa: 'vs CasaXPS', footAuditor: '핏 오디터',
-    footCopyright: '© 2026 Corepeak · GPLv3', footComments: '댓글은 GitHub Discussions 기반',
+    footCopyright: '© 2026 PikaXPS · GPLv3', footComments: '댓글은 GitHub Discussions 기반',
   },
 } as const;
 
@@ -170,7 +170,7 @@ const body = `
     <div style="max-width:1200px;margin:0 auto;padding:14px 24px;display:flex;align-items:center;gap:32px">
       <a href="${docBase}" style="display:flex;align-items:center;gap:10px;text-decoration:none;color:#E9EEF6">
         ${logo(26)}
-        <span style="font-family:'Space Grotesk';font-weight:700;font-size:19px;letter-spacing:-.01em">Corepeak</span>
+        <span style="font-family:'Space Grotesk';font-weight:700;font-size:19px;letter-spacing:-.01em">PikaXPS</span>
       </a>
       <div style="display:flex;gap:26px;margin-left:8px" class="cp-navlinks">
         <a href="#features" class="cp-navlink" style="color:#9AA7B8;text-decoration:none;font-size:14.5px">${t.navFeatures}</a>
@@ -217,7 +217,7 @@ const body = `
           <span style="width:12px;height:12px;border-radius:50%;background:#FEBC2E"></span>
           <span style="width:12px;height:12px;border-radius:50%;background:#28C840"></span>
         </div>
-        <div style="flex:1;text-align:center;font-family:'IBM Plex Mono';font-size:12px;color:#7B8696">Ni2p_oxide.dat — Corepeak</div>
+        <div style="flex:1;text-align:center;font-family:'IBM Plex Mono';font-size:12px;color:#7B8696">Ni2p_oxide.dat — PikaXPS</div>
         <div style="width:52px"></div>
       </div>
       <img src="${SHOT}" alt="${t.shotAlt}" width="1724" height="927" loading="eager" fetchpriority="high" decoding="async" style="display:block;width:100%;height:auto" />
@@ -308,7 +308,7 @@ const body = `
         <div style="padding:18px 20px;border-bottom:1px solid rgba(255,255,255,.08)"></div>
         <div style="padding:16px 14px;border-bottom:1px solid rgba(37,99,235,.3);background:rgba(37,99,235,.07);text-align:center;display:flex;flex-direction:column;align-items:center;gap:5px">
           ${logo(20)}
-          <span style="font-family:'Space Grotesk';font-weight:700;font-size:15px;color:#4f8cff">Corepeak</span>
+          <span style="font-family:'Space Grotesk';font-weight:700;font-size:15px;color:#4f8cff">PikaXPS</span>
         </div>
         <div style="padding:18px 12px;border-bottom:1px solid rgba(255,255,255,.08);text-align:center;font-family:'Space Grotesk';font-weight:600;font-size:13.5px;color:#9AA7B8">XPSPEAK 4.1</div>
         <div style="padding:18px 12px;border-bottom:1px solid rgba(255,255,255,.08);text-align:center;font-family:'Space Grotesk';font-weight:600;font-size:13.5px;color:#9AA7B8">CasaXPS</div>
@@ -405,7 +405,7 @@ const body = `
       <div>
         <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px">
           ${logo(24)}
-          <span style="font-family:'Space Grotesk';font-weight:700;font-size:18px">Corepeak</span>
+          <span style="font-family:'Space Grotesk';font-weight:700;font-size:18px">PikaXPS</span>
         </div>
         <p style="color:#5E6B7C;font-size:13.5px;max-width:280px;line-height:1.6;margin:0">${t.footTagline}</p>
       </div>
@@ -470,7 +470,7 @@ const body = `
     <script type="application/ld+json" set:html={JSON.stringify({
       '@context': 'https://schema.org',
       '@type': 'SoftwareApplication',
-      name: 'Corepeak',
+      name: 'PikaXPS',
       applicationCategory: 'ScienceApplication',
       operatingSystem: 'macOS, Windows',
       description: t.metaDesc,

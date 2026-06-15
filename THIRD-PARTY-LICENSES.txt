@@ -1,12 +1,12 @@
-Corepeak — Third-Party Licenses
+PikaXPS — Third-Party Licenses
 =================================
 
-Corepeak is distributed under the GNU General Public License v3.0 (see LICENSE).
+PikaXPS is distributed under the GNU General Public License v3.0 (see LICENSE).
 It builds on the following open-source components, each under its own license.
-All are compatible with distributing Corepeak as a GPLv3 application.
+All are compatible with distributing PikaXPS as a GPLv3 application.
 
 Qt for Python (PySide6) ........ LGPL v3.0
-    Corepeak uses Qt via PySide6 under the GNU Lesser General Public License v3.0.
+    PikaXPS uses Qt via PySide6 under the GNU Lesser General Public License v3.0.
     Qt is dynamically linked. The Qt libraries shipped inside the packaged application
     (PyInstaller ONEDIR layout) are replaceable: a user may substitute their own build
     of the corresponding Qt/PySide6 version. Qt source: https://www.qt.io/download

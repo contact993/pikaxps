@@ -1,10 +1,10 @@
 ---
 title: The fit audit — is your XPS fit defensible?
-description: How Corepeak's automated fit auditor uses FWHM checks, reference binding energies, BIC and a leave-one-out test to catch over-fitted and unphysical XPS peak fits.
+description: How PikaXPS's automated fit auditor uses FWHM checks, reference binding energies, BIC and a leave-one-out test to catch over-fitted and unphysical XPS peak fits.
 ---
 
 A flat residual is **necessary but not sufficient**: an XPS fit can match the data perfectly and
-still be chemically wrong, or use peaks the data doesn't justify. Corepeak's **fit auditor** runs
+still be chemically wrong, or use peaks the data doesn't justify. PikaXPS's **fit auditor** runs
 the checks an experienced reviewer would, in one click, and returns a ✖ / ⚠ / ✓ report.
 
 ## What it checks
@@ -34,4 +34,4 @@ Statistics are necessary, not sufficient. Before adding a component, confirm a k
 can sit at that binding energy (the auditor checks the reference DB for you). Both the statistics
 and the chemistry have to agree.
 
-[Download Corepeak →](/download/) and run the audit on your next fit.
+[Download PikaXPS →](/download/) and run the audit on your next fit.

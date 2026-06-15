@@ -4,7 +4,7 @@ description: When to use a Shirley, Tougaard, or linear background for XPS peak 
 ---
 
 The background you subtract directly determines your peak areas, so the choice matters as much as
-the peaks themselves. Corepeak offers Linear, Shirley, Shirley + Linear, and Tougaard (U2), plus an
+the peaks themselves. PikaXPS offers Linear, Shirley, Shirley + Linear, and Tougaard (U2), plus an
 *active Shirley* that co-fits with the peaks.
 
 ## Linear
@@ -38,4 +38,4 @@ inaccurate over narrow windows, where Shirley is usually enough.
 
 Always report which background and energy range you used — changing it changes your areas.
 
-[Download Corepeak →](/download/) and try **Fit BG** to settle the background before adding peaks.
+[Download PikaXPS →](/download/) and try **Fit BG** to settle the background before adding peaks.

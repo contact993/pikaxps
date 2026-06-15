@@ -1,6 +1,6 @@
 ---
 title: Features
-description: Backgrounds, lineshapes, doublets, satellites, the fit auditor, a citation-backed reference database, quantification, batch fitting and flexible import — everything in Corepeak.
+description: Backgrounds, lineshapes, doublets, satellites, the fit auditor, a citation-backed reference database, quantification, batch fitting and flexible import — everything in PikaXPS.
 ---
 
 ## Backgrounds

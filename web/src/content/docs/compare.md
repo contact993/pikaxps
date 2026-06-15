@@ -1,12 +1,12 @@
 ---
-title: How Corepeak compares
-description: Corepeak vs CasaXPS, XPSPEAK 4.1, KherveFitting and LG4X — a fair comparison of free and paid XPS peak-fitting software.
+title: How PikaXPS compares
+description: PikaXPS vs CasaXPS, XPSPEAK 4.1, KherveFitting and LG4X — a fair comparison of free and paid XPS peak-fitting software.
 ---
 
 There are good tools for XPS peak fitting. Here's an honest comparison so you can pick the right
-one — Corepeak is the **free, Mac-friendly, validation-focused** option.
+one — PikaXPS is the **free, Mac-friendly, validation-focused** option.
 
-| | Corepeak | XPSPEAK 4.1 | CasaXPS | KherveFitting / LG4X |
+| | PikaXPS | XPSPEAK 4.1 | CasaXPS | KherveFitting / LG4X |
 |---|---|---|---|---|
 | Price | **Free (OSS, GPLv3)** | Free | €830+ academic, perpetual | Free (OSS) |
 | Platforms | **macOS + Windows** | Windows only | Windows (Mac via emulation) | Win/Mac/Linux |
@@ -19,15 +19,15 @@ one — Corepeak is the **free, Mac-friendly, validation-focused** option.
 
 ### When to use what
 - **CasaXPS** is the paid standard with decades of installed base; if your lab already standardises
-  on it and reviewers expect its output, keep using it. Corepeak is complementary — a free
+  on it and reviewers expect its output, keep using it. PikaXPS is complementary — a free
   Mac-native option, a teaching tool, and a second opinion that audits your fits.
-- **XPSPEAK 4.1** is what many students still use for lack of a free alternative. Corepeak is what
+- **XPSPEAK 4.1** is what many students still use for lack of a free alternative. PikaXPS is what
   XPSPEAK should have become in 2025: cross-platform, no peak limits, and validated.
-- **KherveFitting / LG4X** are excellent free, cross-platform, lmfit-based tools. Corepeak's
+- **KherveFitting / LG4X** are excellent free, cross-platform, lmfit-based tools. PikaXPS's
   difference is the **automated fit auditor** and the **citation-backed reference database** they
   don't have.
 
 :::note
 This page aims to be fair. Spotted something inaccurate about another tool?
-[Tell me](https://github.com/contact993/corepeak/issues/new/choose) and I'll fix it.
+[Tell me](https://github.com/contact993/pikaxps/issues/new/choose) and I'll fix it.
 :::

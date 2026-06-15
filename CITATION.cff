@@ -1,9 +1,9 @@
 cff-version: 1.2.0
-title: "Corepeak"
+title: "PikaXPS"
 message: "If you use this software in your research, please cite it."
 type: software
 abstract: >-
-  Corepeak is a free, cross-platform (macOS / Windows) desktop application for X-ray
+  PikaXPS is a free, cross-platform (macOS / Windows) desktop application for X-ray
   photoelectron spectroscopy (XPS) peak fitting. It reproduces the XPSPEAK 4.1 workflow with
   modern UX and adds a built-in automated fit auditor (FWHM / doublet / lineshape / satellite
   checks, residual z-score, BIC, and leave-one-out peak-necessity testing), a citation-backed
@@ -22,5 +22,5 @@ keywords:
   - surface analysis
   - spectroscopy
 license: GPL-3.0
-repository-code: "https://github.com/contact993/corepeak"
-version: "0.1.3"
+repository-code: "https://github.com/contact993/pikaxps"
+version: "0.1.4"

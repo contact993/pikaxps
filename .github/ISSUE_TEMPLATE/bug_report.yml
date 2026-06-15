@@ -26,7 +26,7 @@ body:
   - type: input
     id: version
     attributes:
-      label: Corepeak version
+      label: PikaXPS version
       placeholder: "e.g. 0.1.0 (see Help ▸ About)"
   - type: textarea
     id: data

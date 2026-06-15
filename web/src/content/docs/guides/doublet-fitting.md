@@ -17,13 +17,13 @@ peaks wherever they reduce χ².
 
 The splitting (eV) is element- and orbital-specific (e.g. S 2p 1.18, Mo 3d 3.15, Pt 4f 3.33).
 
-## How to do it in Corepeak
-In the peak table, set the peak's **Type** to **Doublet**. Corepeak then creates the partner with:
+## How to do it in PikaXPS
+In the peak table, set the peak's **Type** to **Doublet**. PikaXPS then creates the partner with:
 - partner centre = main + splitting (fixed),
 - partner area = main × ratio (fixed),
 - partner FWHM = main FWHM (linked).
 
-If Corepeak recognises the region (name it like "Ir 4f"), the splitting and ratio fill
+If PikaXPS recognises the region (name it like "Ir 4f"), the splitting and ratio fill
 automatically; otherwise you enter them once. The same-species FWHMs stay linked, so the optimizer
 only fits what physics leaves free.
 
@@ -32,4 +32,4 @@ Some metals (e.g. Ti) show ratios slightly off the theoretical value because of 
 effects — start from the theoretical value anyway, and only release a constraint with a clear
 physical reason. The **fit auditor** will tell you if a freed ratio has drifted too far.
 
-[Download Corepeak →](/download/)
+[Download PikaXPS →](/download/)

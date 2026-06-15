@@ -1,5 +1,5 @@
-"""Corepeak - XPS peak fitting with reference database and educational help."""
+"""PikaXPS - XPS peak fitting with reference database and educational help."""
 
-__version__ = "0.1.3"
-APP_NAME = "Corepeak"
-REPO_URL = "https://github.com/contact993/corepeak"
+__version__ = "0.1.4"
+APP_NAME = "PikaXPS"
+REPO_URL = "https://github.com/contact993/pikaxps"

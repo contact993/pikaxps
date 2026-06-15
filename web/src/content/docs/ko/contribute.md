@@ -1,14 +1,14 @@
 ---
 title: 레퍼런스 값 제보
-description: 출처와 함께 XPS 결합에너지 값을 제출해 Corepeak의 출처 명시 레퍼런스 데이터베이스를 함께 키워주세요.
+description: 출처와 함께 XPS 결합에너지 값을 제출해 PikaXPS의 출처 명시 레퍼런스 데이터베이스를 함께 키워주세요.
 ---
 
-Corepeak의 레퍼런스 데이터베이스는 **출처가 명시**되어 있습니다 — 모든 결합에너지 값에 문헌
+PikaXPS의 레퍼런스 데이터베이스는 **출처가 명시**되어 있습니다 — 모든 결합에너지 값에 문헌
 출처가 달립니다. 여러분이 키울 수 있고, 채택될 때마다 DB가 더 풍부해집니다.
 
 ## 값 제출
 
-[📚 레퍼런스 값 제보하기 →](https://github.com/contact993/corepeak/issues/new?template=reference_submission.yml)
+[📚 레퍼런스 값 제보하기 →](https://github.com/contact993/pikaxps/issues/new?template=reference_submission.yml)
 
 원소, 오비탈, 화학 상태, 결합에너지(+선택: 범위 / 라인섀입 힌트), 그리고 — **필수** — **문헌
 출처**(인용 또는 DOI)를 입력하게 됩니다.

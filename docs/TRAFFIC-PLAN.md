@@ -1,4 +1,4 @@
-# Corepeak 홈페이지 트래픽 늘리기 — 실행 방안
+# PikaXPS 홈페이지 트래픽 늘리기 — 실행 방안
 
 > 핵심 원칙(리서치 결론): 이 분야에서 트래픽은 **광고가 아니라 "논문 + 백링크 + 커뮤니티"**에서
 > 옵니다. SEO는 보조. 아래는 효과 순으로 정렬했고, ✅는 이미 적용, ⬜는 사용자가 할 일.
@@ -23,7 +23,7 @@
 ## 2순위 — 검색·발견 인프라 (일부 사용자 계정 필요)
 - ⬜ **Google Search Console 등록** → sitemap 제출 → 색인 요청 (도메인 연결 후). 신규 도메인 색인 가속.
 - ⬜ **Bing Webmaster Tools**도 동일 (의외로 학계 트래픽 있음).
-- ⬜ **도메인 연결**(corepeak.app 등) — `github.io/corepeak`보다 기억·신뢰·SEO 모두 유리.
+- ⬜ **도메인 연결**(pikaxps.app 등) — `github.io/pikaxps`보다 기억·신뢰·SEO 모두 유리.
 - ⬜ **GitHub repo 토픽/About 정리** (xps, peak-fitting, spectroscopy, surface-analysis 태그) →
   GitHub 검색·토픽 페이지 유입.
 

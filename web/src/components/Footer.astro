@@ -1,34 +1,34 @@
 ---
 // Custom Starlight footer: default footer + a Star/Cite support block + Giscus comments.
 //
-// Corepeak is 100% free with NO ads. On every documentation page we instead place a
+// PikaXPS is 100% free with NO ads. On every documentation page we instead place a
 // tasteful, privacy-clean nudge toward the two things that actually sustain a free
 // academic tool: a GitHub star and a citation. Both are plain links — no tracking.
 import Default from '@astrojs/starlight/components/Footer.astro';
 
-const pathname = Astro.url.pathname;                 // e.g. /corepeak/ko/cite/
+const pathname = Astro.url.pathname;                 // e.g. /pikaxps/ko/cite/
 const isKo = /\/ko(\/|$)/.test(pathname);
 const isSplash = Astro.props.entry?.data?.template === 'splash';
 const show = !isSplash;
 
-const GH = 'https://github.com/contact993/corepeak';
+const GH = 'https://github.com/contact993/pikaxps';
 const T = isKo
   ? {
-      lead: 'Corepeak이 연구에 도움이 됐나요?',
+      lead: 'PikaXPS가 연구에 도움이 됐나요?',
       body: '무료 학술 도구의 지속 개발을 정당화하는 건 ⭐ GitHub Star와 논문 인용입니다. 1초면 됩니다.',
       star: '⭐ GitHub에서 Star',
       cite: '📑 인용 방법',
-      citeHref: '/corepeak/ko/cite/',
+      citeHref: '/pikaxps/ko/cite/',
       comments: '댓글 · 질문',
       ns1: '댓글은 GitHub Discussions 기반입니다 — ',
       nsLink: '게시판 열기',
     }
   : {
-      lead: 'Did Corepeak help your research?',
+      lead: 'Did PikaXPS help your research?',
       body: 'A GitHub star and a citation are how a free academic tool justifies its continued development. Both take one second.',
       star: '⭐ Star on GitHub',
       cite: '📑 How to cite',
-      citeHref: '/corepeak/cite/',
+      citeHref: '/pikaxps/cite/',
       comments: 'Comments & questions',
       ns1: 'Comments are powered by GitHub Discussions — ',
       nsLink: 'open the board',
@@ -55,7 +55,7 @@ const T = isKo
       <h2>{T.comments}</h2>
       <script
         src="https://giscus.app/client.js"
-        data-repo="contact993/corepeak"
+        data-repo="contact993/pikaxps"
         data-repo-id="REPLACE_ME"
         data-category="General"
         data-category-id="REPLACE_ME"

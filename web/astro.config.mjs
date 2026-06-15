@@ -5,18 +5,18 @@ import sitemap from '@astrojs/sitemap';
 
 // When a custom domain is connected later, set SITE to it and BASE to '/'.
 const SITE = process.env.SITE_URL || 'https://contact993.github.io';
-const BASE = process.env.BASE_PATH || '/corepeak';
+const BASE = process.env.BASE_PATH || '/pikaxps';
 
 const softwareJsonLd = {
   '@context': 'https://schema.org',
   '@type': 'SoftwareApplication',
-  name: 'Corepeak',
+  name: 'PikaXPS',
   applicationCategory: 'ScienceApplication',
   operatingSystem: 'macOS, Windows',
   description:
     'Free, cross-platform XPS (X-ray photoelectron spectroscopy) peak-fitting app with a built-in fit auditor and a citation-backed reference database. The modern replacement for XPSPEAK 4.1.',
   url: SITE + BASE + '/',
-  downloadUrl: 'https://github.com/contact993/corepeak/releases',
+  downloadUrl: 'https://github.com/contact993/pikaxps/releases',
   softwareVersion: '0.1.0',
   license: 'https://www.gnu.org/licenses/gpl-3.0.html',
   offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
@@ -29,11 +29,11 @@ export default defineConfig({
   integrations: [
     sitemap(),
     starlight({
-      title: 'Corepeak',
+      title: 'PikaXPS',
       tagline: 'Free XPS peak fitting for Mac & Windows — with a built-in fit auditor',
       description:
         'Free, cross-platform XPS peak-fitting software with a fit auditor and a citation-backed reference database. The modern XPSPEAK 4.1 replacement.',
-      social: { github: 'https://github.com/contact993/corepeak' },
+      social: { github: 'https://github.com/contact993/pikaxps' },
       customCss: ['./src/styles/custom.css'],
       defaultLocale: 'root',
       locales: {

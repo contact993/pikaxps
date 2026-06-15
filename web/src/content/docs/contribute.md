@@ -1,15 +1,15 @@
 ---
 title: Contribute a reference value
-description: Help grow Corepeak's citation-backed XPS binding-energy database by submitting reference values with sources.
+description: Help grow PikaXPS's citation-backed XPS binding-energy database by submitting reference values with sources.
 ---
 
-Corepeak's reference database is **citation-backed** — every binding-energy value carries its
+PikaXPS's reference database is **citation-backed** — every binding-energy value carries its
 literature source. You can help it grow, and the database gets richer with every accepted
 submission.
 
 ## Submit a value
 
-[📚 Submit a reference value →](https://github.com/contact993/corepeak/issues/new?template=reference_submission.yml)
+[📚 Submit a reference value →](https://github.com/contact993/pikaxps/issues/new?template=reference_submission.yml)
 
 You'll be asked for the element, orbital, chemical state, binding energy (and optional range /
 lineshape hint), and — **required** — the **literature source** (citation or DOI).

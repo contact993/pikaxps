@@ -286,9 +286,9 @@ class MainWindow(QMainWindow):
             act.setCheckable(True)
             act.setChecked(current_language() == code)
         m_help.addSeparator()
-        self._add_action(m_help, t("⭐ Star Corepeak on GitHub", "⭐ GitHub에서 Corepeak Star"),
+        self._add_action(m_help, t("⭐ Star PikaXPS on GitHub", "⭐ GitHub에서 PikaXPS Star"),
                          lambda: self._open_url(""))
-        self._add_action(m_help, t("📑 How to cite Corepeak…", "📑 Corepeak 인용 방법…"), self._cite)
+        self._add_action(m_help, t("📑 How to cite PikaXPS…", "📑 PikaXPS 인용 방법…"), self._cite)
         self._add_action(m_help, t("💬 Send feedback / report a bug", "💬 피드백 보내기 / 버그 신고"),
                          lambda: self._open_url("/issues/new/choose"))
         self._add_action(m_help, t("📚 Submit a reference value", "📚 레퍼런스 값 제보"), lambda: self._open_url(
@@ -744,9 +744,9 @@ class MainWindow(QMainWindow):
     def _citation_bibtex(self) -> str:
         from .. import REPO_URL
         return (
-            "@software{corepeak,\n"
+            "@software{pikaxps,\n"
             "  author  = {Kim, Taehee},\n"
-            "  title   = {Corepeak: free cross-platform XPS peak fitting with a built-in fit auditor},\n"
+            "  title   = {PikaXPS: free cross-platform XPS peak fitting with a built-in fit auditor},\n"
             "  year    = {2026},\n"
             f"  url     = {{{REPO_URL}}},\n"
             f"  version = {{{__version__}}}\n"
@@ -755,8 +755,8 @@ class MainWindow(QMainWindow):
 
     def _citation_sentence(self) -> str:
         from .. import REPO_URL
-        return t(f"XPS spectra were analyzed (peak-fitted) using Corepeak ({REPO_URL}).",
-                 f"XPS 스펙트럼은 Corepeak ({REPO_URL})으로 분석(피크 피팅)하였다.")
+        return t(f"XPS spectra were analyzed (peak-fitted) using PikaXPS ({REPO_URL}).",
+                 f"XPS 스펙트럼은 PikaXPS ({REPO_URL})으로 분석(피크 피팅)하였다.")
 
     def _cite(self) -> None:
         from PySide6.QtWidgets import QApplication
@@ -765,7 +765,7 @@ class MainWindow(QMainWindow):
         sentence = self._citation_sentence()
         bibtex = self._citation_bibtex()
         box = QMessageBox(self)
-        box.setWindowTitle(t("How to cite Corepeak", "Corepeak 인용 방법"))
+        box.setWindowTitle(t("How to cite PikaXPS", "PikaXPS 인용 방법"))
         box.setText(t(
             "The simplest way: add one line to your Methods / Experimental section.\n"
             "For most journals this is a complete software citation — nothing more is needed.",
@@ -789,7 +789,7 @@ class MainWindow(QMainWindow):
             self.statusBar().showMessage(
                 t("BibTeX copied to clipboard.", "BibTeX를 클립보드에 복사했습니다."), 5000)
         elif clicked is web_btn:
-            QDesktopServices.openUrl(QUrl("https://contact993.github.io/corepeak/cite/"))
+            QDesktopServices.openUrl(QUrl("https://contact993.github.io/pikaxps/cite/"))
 
     def _about(self) -> None:
         from .. import REPO_URL
@@ -804,8 +804,8 @@ class MainWindow(QMainWindow):
             + t("BE database: literature reference values (each entry cites its source) — ",
                 "BE 데이터베이스: 문헌 레퍼런스 값 (각 항목에 출처 표기) — ")
             + "Biesinger et al., Moulder Handbook, NIST SRD 20<br><br>"
-            + t("If Corepeak helps your research, please ⭐ star it on GitHub and cite it "
-                "(Help ▸ How to cite Corepeak).",
-                "Corepeak이 연구에 도움이 됐다면 GitHub에서 ⭐ Star와 인용 부탁드립니다 "
-                "(도움말 ▸ Corepeak 인용 방법).") + "<br>"
+            + t("If PikaXPS helps your research, please ⭐ star it on GitHub and cite it "
+                "(Help ▸ How to cite PikaXPS).",
+                "PikaXPS가 연구에 도움이 됐다면 GitHub에서 ⭐ Star와 인용 부탁드립니다 "
+                "(도움말 ▸ PikaXPS 인용 방법).") + "<br>"
             + f"<a href='{REPO_URL}'>{host}</a>")
